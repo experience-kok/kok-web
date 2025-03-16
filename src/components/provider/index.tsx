@@ -1,3 +1,5 @@
+import React from 'react';
+
 import QueryProvider from 'components/provider/query-provider';
 
 /**
