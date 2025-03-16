@@ -1,4 +1,4 @@
-import QueryProvider from './query-provider';
+import QueryProvider from 'components/provider/query-provider';
 
 /**
  * 프로젝트 내에 사용하는 모든 provider 들을 결합시키는 컴포넌트

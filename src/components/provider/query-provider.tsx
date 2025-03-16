@@ -2,11 +2,13 @@
 
 import { PropsWithChildren } from 'react';
 
+import Link from 'next/link';
+
+import getQueryClient from 'configs/tanstack-query/get-query-client';
+
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experimental';
-
-import getQueryClient from '@/config/tanstack-query/get-query-client';
 
 export default function QueryProvider({ children }: PropsWithChildren) {
   const queryClient = getQueryClient();

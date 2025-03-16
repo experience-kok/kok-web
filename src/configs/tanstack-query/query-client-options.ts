@@ -1,8 +1,8 @@
 import {
   Query,
-  defaultShouldDehydrateQuery,
-  QueryClientConfig,
   QueryCache,
+  QueryClientConfig,
+  defaultShouldDehydrateQuery,
 } from '@tanstack/react-query';
 
 const queryClientOptions: QueryClientConfig = {
