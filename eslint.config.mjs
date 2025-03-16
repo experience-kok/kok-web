@@ -10,7 +10,7 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.config({
     ignorePatterns: ['node_modules/'],
-    extends: ['next', 'prettier', 'next/core-web-vitals', 'next/typescript'],
+    extends: ['next', 'prettier', 'next/core-web-vitals', 'next/typescript', 'eslint:recommended'],
     plugins: ['import'],
     rules: {
       // 상대 경로 사용 금지
