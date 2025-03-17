@@ -23,9 +23,9 @@ export default function MainBanner() {
 
   return (
     <Carousel className="mx-auto w-full" opts={{ loop: true }}>
-      <CarouselContent className="-ml-1">
+      <CarouselContent className="-ml-4">
         {images.map((image, index) => (
-          <CarouselItem key={index} className="pl-1 lg:basis-1/3">
+          <CarouselItem key={index} className="basis-[85%] pl-4 md:basis-1/3">
             <div className="p-1">
               <AspectRatio ratio={16 / 9} className="rounded-lg">
                 <Image
