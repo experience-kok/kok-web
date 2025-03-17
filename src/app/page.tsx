@@ -1,15 +1,29 @@
-import { useEffect } from 'react';
+import { Text } from 'components/ui/text';
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import BrandSection from './_components/brand-section';
+import MainBanner from './_components/main-banner';
+import PopularSection from './_components/popular-section';
 
 export default function Home() {
-  const a = 1;
   return (
-    <div>
-      <span className="text-primary absolute flex">asdf</span>
-      <span>adsf</span>
-      <span className="text-muted-foreground">adsf</span>
-    </div>
+    <>
+      <section className="px-4 py-10 md:px-16">
+        <MainBanner />
+      </section>
+
+      <section className="px-4 py-10 md:px-16">
+        <Text as="h2" size="2xl" weight="bold" className="mb-4">
+          인기 캠페인
+        </Text>
+        <PopularSection />
+      </section>
+
+      <section className="px-4 py-10 md:px-16">
+        <Text as="h2" size="2xl" weight="bold" className="mb-4">
+          브랜드관
+        </Text>
+        <BrandSection />
+      </section>
+    </>
   );
 }

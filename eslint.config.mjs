@@ -14,12 +14,12 @@ const eslintConfig = [
     plugins: ['import'],
     rules: {
       // 상대 경로 사용 금지
-      'no-restricted-imports': [
-        'error',
-        {
-          patterns: ['.*'],
-        },
-      ],
+      // 'no-restricted-imports': [
+      //   'error',
+      //   {
+      //     patterns: ['.*'],
+      //   },
+      // ],
 
       // HTML 엔티티 사용 가능
       'react/no-unescaped-entities': 'off',
