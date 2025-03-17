@@ -9,7 +9,7 @@ import PaddingWrapper from 'components/layout/padding-wrapper';
  */
 export default function Header() {
   return (
-    <header className="h-20 w-full">
+    <header className="h-20 w-full border-b border-gray-300">
       <PaddingWrapper>
         <div className="flex h-full w-full items-center">
           <HeaderLogo />
