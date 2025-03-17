@@ -22,7 +22,7 @@ export default function MainBanner() {
   ];
 
   return (
-    <Carousel className="mx-auto w-full">
+    <Carousel className="mx-auto w-full" opts={{ loop: true }}>
       <CarouselContent className="-ml-1">
         {images.map((image, index) => (
           <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
