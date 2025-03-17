@@ -4,7 +4,6 @@ import type { Metadata } from 'next';
 
 import { Geist, Geist_Mono } from 'next/font/google';
 
-// eslint-disable-next-line no-restricted-imports
 import './globals.css';
 
 import Header from 'components/layout/header';
@@ -36,7 +35,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Provider>
           <Header />
-          <main>{children}</main>
+          <main className="h-full w-full">{children}</main>
         </Provider>
       </body>
     </html>
