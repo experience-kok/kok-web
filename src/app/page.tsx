@@ -1,3 +1,4 @@
+import SplitBox from 'components/ui/split-box';
 import { Text } from 'components/ui/text';
 
 import BrandSection from './_components/brand-section';
@@ -17,6 +18,8 @@ export default function Home() {
         </Text>
         <PopularSection />
       </section>
+
+      <SplitBox className="h-2" />
 
       <section className="px-4 py-10 lg:px-16">
         <Text as="h2" size="2xl" weight="bold" className="mb-4">

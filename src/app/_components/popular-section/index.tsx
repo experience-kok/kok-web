@@ -15,8 +15,8 @@ export default function PopularSection() {
       }}
     >
       <CarouselContent className="-ml-4">
-        {new Array(7).fill(0).map((_, index) => (
-          <CarouselItem key={index} className="basis-[38%] pl-4 md:basis-[1/3]">
+        {new Array(10).fill(0).map((_, index) => (
+          <CarouselItem key={index} className="basis-[44%] pl-4 md:basis-[19%] lg:basis-[18%]">
             <CampaignCard />
           </CarouselItem>
         ))}

@@ -6,7 +6,7 @@ import { Heart } from 'lucide-react';
 export default function LikeButton() {
   return (
     <>
-      <Heart className="hover:text-primary h-5 w-5 cursor-pointer transition-all ease-in-out" />
+      <Heart className="hover:text-primary h-6 w-6 cursor-pointer transition-all ease-in-out" />
     </>
   );
 }
