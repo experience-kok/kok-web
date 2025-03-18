@@ -1,15 +1,7 @@
 import Image from 'next/image';
 
 import { AspectRatio } from 'components/ui/aspect-ratio';
-import { Button } from 'components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from 'components/ui/card';
+import { Card, CardContent, CardFooter } from 'components/ui/card';
 import { Text } from 'components/ui/text';
 
 import LikeButton from './like-button';
@@ -24,14 +16,14 @@ export default function CampaignCard() {
     'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080';
   return (
     <Card className="gap-2 border-none py-0 shadow-none">
-      <CardContent className="p-0">
+      <CardContent className="group cursor-pointer overflow-hidden rounded-lg p-0">
         <AspectRatio ratio={1 / 1}>
           <Image
             src={testurl}
             alt={`testurl`}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="rounded-lg object-cover"
+            className="rounded-lg object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
           />
         </AspectRatio>
       </CardContent>
