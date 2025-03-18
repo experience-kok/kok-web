@@ -25,7 +25,7 @@ export default function CampaignCard() {
   return (
     <Card className="pt-0">
       <CardContent className="p-0">
-        <AspectRatio ratio={1 / 1}>
+        <AspectRatio ratio={1.5 / 1}>
           <Image
             src={testurl}
             alt={`testurl`}
