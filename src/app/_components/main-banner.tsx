@@ -1,13 +1,11 @@
+'use client';
+
 import Image from 'next/image';
 
 import { AspectRatio } from 'components/ui/aspect-ratio';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from 'components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem } from 'components/ui/carousel';
+
+import Autoplay from 'embla-carousel-autoplay';
 
 /**
  * 메인 페이지 배너 컴포넌트 (반응형)
@@ -22,26 +20,30 @@ export default function MainBanner() {
   ];
 
   return (
-    <Carousel className="mx-auto w-full" opts={{ loop: true }}>
+    <Carousel
+      className="mx-auto w-full"
+      opts={{ loop: true }}
+      plugins={[
+        Autoplay({
+          delay: 3000,
+        }),
+      ]}
+    >
       <CarouselContent className="-ml-4">
         {images.map((image, index) => (
           <CarouselItem key={index} className="basis-[85%] pl-4 md:basis-1/3">
-            <div className="p-1">
-              <AspectRatio ratio={16 / 9} className="rounded-lg">
-                <Image
-                  src={image}
-                  alt={`Banner Image ${index + 1}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="rounded-lg object-cover"
-                />
-              </AspectRatio>
-            </div>
+            <AspectRatio ratio={16 / 9} className="rounded-lg">
+              <Image
+                src={image}
+                alt={`Banner Image ${index + 1}`}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="rounded-lg object-cover"
+              />
+            </AspectRatio>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
     </Carousel>
   );
 }

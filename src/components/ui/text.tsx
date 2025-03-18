@@ -19,7 +19,8 @@ const textVariants = cva('', {
     color: {
       primary: 'text-primary',
       foreground: 'text-foreground',
-      muted: 'text-muted-foreground',
+      muted: 'text-muted',
+      'muted-foreground': 'text-muted-foreground',
       blue: 'text-blue-500',
       red: 'text-red-500',
       green: 'text-green-500',

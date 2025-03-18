@@ -27,11 +27,11 @@ export default function ProgressBar({ currentApplicants, maxApplicants }: Props)
           <Text size="sm" color="foreground">
             신청 {currentApplicants} / &nbsp;
           </Text>
-          <Text size="sm" color="muted">
+          <Text size="sm" color="muted-foreground">
             {maxApplicants}명
           </Text>
         </div>
-        <Text size="sm" color="muted">
+        <Text size="sm" color="muted-foreground">
           {progress}%
         </Text>
       </div>

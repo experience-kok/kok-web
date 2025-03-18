@@ -6,7 +6,7 @@ import { Share2 } from 'lucide-react';
 export default function ShareButton() {
   return (
     <>
-      <Share2 className="h-5 w-5 cursor-pointer transition-all ease-in-out hover:text-blue-500" />
+      <Share2 className="h-6 w-6 cursor-pointer transition-all ease-in-out hover:text-blue-500" />
     </>
   );
 }
