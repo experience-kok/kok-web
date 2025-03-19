@@ -96,6 +96,15 @@
   }
 }
 
+@layer utilities {
+  .scrollbar-hide {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
+  }
+}
+
 html {
   font-size: 14px;
 }
