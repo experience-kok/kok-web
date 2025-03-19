@@ -14,12 +14,12 @@ const eslintConfig = [
     plugins: ['import'],
     rules: {
       // 상대 경로 사용 금지
-      'no-restricted-imports': [
-        'error',
-        {
-          patterns: ['.*'],
-        },
-      ],
+      // 'no-restricted-imports': [
+      //   'error',
+      //   {
+      //     patterns: ['.*'],
+      //   },
+      // ],
 
       // HTML 엔티티 사용 가능
       'react/no-unescaped-entities': 'off',
@@ -38,31 +38,22 @@ const eslintConfig = [
       'import/order': [
         'error',
         {
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            ['parent', 'sibling'],
-            'index',
-            'object',
-            'type',
-            'unknown',
-          ],
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'unknown'],
           pathGroups: [
             {
               pattern: 'react', // React 관련
               group: 'external',
-              position: 'before', // React를 외부 모듈 그룹보다 먼저
+              position: 'before',
             },
             {
               pattern: 'next', // Next.js 관련
               group: 'external',
-              position: 'after', // Next를 React 다음에
+              position: 'after',
             },
             {
               pattern: 'next/font/google', // Next.js 폰트 관련
               group: 'external',
-              position: 'after', // Next보다 뒤에
+              position: 'after',
             },
             {
               pattern: 'configs/**', // configs 폴더
@@ -104,8 +95,13 @@ const eslintConfig = [
               group: 'internal',
               position: 'after', // 가장 마지막에 배치
             },
+            {
+              pattern: 'embla-carousel-autoplay', // embla-carousel-autoplay 라이브러리
+              group: 'internal',
+              position: 'after', // 가장 마지막에 배치
+            },
           ],
-          pathGroupsExcludedImportTypes: ['@tanstack'],
+          pathGroupsExcludedImportTypes: ['@tanstack', 'embla-carousel-autoplay'],
           'newlines-between': 'always',
           alphabetize: {
             order: 'asc',
