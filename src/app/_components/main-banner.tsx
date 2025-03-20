@@ -25,7 +25,7 @@ export default function MainBanner() {
       opts={{ loop: true }}
       plugins={[
         Autoplay({
-          delay: 3000,
+          delay: 5000,
         }),
       ]}
     >

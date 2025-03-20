@@ -39,7 +39,7 @@ export default function HeaderNav() {
 
             {/* 구분선 */}
             {index < NAV_MENU.length - 1 && (
-              <div className="mx-4 h-2 border-r border-gray-300"></div>
+              <div className="mx-4 h-2 border-r border-gray-200"></div>
             )}
           </li>
         ))}

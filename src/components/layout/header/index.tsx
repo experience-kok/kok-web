@@ -12,7 +12,7 @@ import HeaderSecondNav from './header-second-nav';
 export default function Header() {
   return (
     <>
-      <header className="h-20 w-full border-b border-gray-300">
+      <header className="h-14 w-full md:h-16 md:border-b-[1px] md:border-gray-200">
         <PaddingWrapper>
           <div className="flex h-full w-full items-center">
             <HeaderLogo />
