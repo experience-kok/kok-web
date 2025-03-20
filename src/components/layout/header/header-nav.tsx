@@ -32,8 +32,8 @@ export default function HeaderNav() {
     <nav className="ml-16">
       <ul className="flex items-center">
         {NAV_MENU.map((menu, index) => (
-          <li className="group flex items-center" key={menu.title}>
-            <Link href={menu.url} className="group-hover:text-primary text-xl font-bold">
+          <li className="flex items-center" key={menu.title}>
+            <Link href={menu.url} className="hover:text-primary text-xl font-bold">
               {menu.title}
             </Link>
 
