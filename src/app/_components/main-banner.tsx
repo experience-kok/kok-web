@@ -31,14 +31,14 @@ export default function MainBanner() {
     >
       <CarouselContent className="-ml-4">
         {images.map((image, index) => (
-          <CarouselItem key={index} className="basis-[85%] pl-4 md:basis-1/3">
-            <AspectRatio ratio={16 / 9} className="rounded-lg">
+          <CarouselItem key={index} className="pl-0 md:basis-1/3 md:pl-4">
+            <AspectRatio ratio={16 / 9} className="md:rounded-lg">
               <Image
                 src={image}
                 alt={`Banner Image ${index + 1}`}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="rounded-lg object-cover"
+                className="object-cover md:rounded-lg"
               />
             </AspectRatio>
           </CarouselItem>
