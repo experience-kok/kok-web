@@ -8,7 +8,7 @@ import PopularSection from './_components/popular-section';
 export default function Home() {
   return (
     <>
-      <section className="px-4 py-10 lg:px-16">
+      <section className="md:px-4 md:py-10 lg:px-16">
         <MainBanner />
       </section>
 
