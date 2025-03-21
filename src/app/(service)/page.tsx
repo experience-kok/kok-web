@@ -1,9 +1,8 @@
+import BrandSection from 'app/_components/brand-section';
+import MainBanner from 'app/_components/main-banner';
+import PopularSection from 'app/_components/popular-section';
 import SplitBox from 'components/ui/split-box';
 import { Text } from 'components/ui/text';
-
-import BrandSection from './_components/brand-section';
-import MainBanner from './_components/main-banner';
-import PopularSection from './_components/popular-section';
 
 export default function Home() {
   return (
