@@ -27,6 +27,7 @@ const textVariants = cva('', {
       yellow: 'text-yellow-500',
       orange: 'text-orange-500',
       purple: 'text-purple-500',
+      white: 'text-white',
     },
     weight: {
       thin: 'font-thin',

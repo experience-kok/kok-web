@@ -9,7 +9,7 @@ import KakaoIcon from 'public/icons/kakao.svg';
 export default function KakaoLoginButton() {
   return (
     <Button
-      className="h-[50px] w-full rounded-lg bg-[#FEE500] text-black"
+      className="h-12 w-full rounded-lg bg-[#FEE500] text-black hover:bg-[#FEE500]/90"
       style={{ color: 'rgba(0, 0, 0, 0.85)' }}
     >
       <KakaoIcon width={24} height={24} fill="#000" />
