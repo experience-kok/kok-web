@@ -10,7 +10,7 @@ const currentYear = new Date().getFullYear(); // 현재 연도 가져오기
 export default function Footer() {
   return (
     <footer className="w-full border-t border-gray-300 py-6">
-      <div className="container px-16">
+      <div className="container px-4 md:px-16">
         <Text size="xl" weight="bold">
           체험콕
         </Text>
