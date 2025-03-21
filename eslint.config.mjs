@@ -91,6 +91,11 @@ const eslintConfig = [
               position: 'after',
             },
             {
+              pattern: 'public/**', // public 폴더
+              group: 'internal',
+              position: 'after',
+            },
+            {
               pattern: '@tanstack/**', // @tanstack 관련 라이브러리
               group: 'internal',
               position: 'after', // 가장 마지막에 배치
