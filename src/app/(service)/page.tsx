@@ -26,6 +26,24 @@ export default function Home() {
         </Text>
         <BrandSection />
       </section>
+
+      <SplitBox className="h-2" />
+
+      <section className="px-4 py-10 lg:px-16">
+        <Text as="h2" size="2xl" weight="bold" className="mb-4">
+          임시 영역
+        </Text>
+        <PopularSection />
+      </section>
+
+      <SplitBox className="h-2" />
+
+      <section className="px-4 py-10 lg:px-16">
+        <Text as="h2" size="2xl" weight="bold" className="mb-4">
+          임시 영역
+        </Text>
+        <BrandSection />
+      </section>
     </>
   );
 }

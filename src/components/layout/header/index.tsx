@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import HeaderLogo from 'components/layout/header/header-logo';
