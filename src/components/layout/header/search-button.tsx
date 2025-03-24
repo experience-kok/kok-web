@@ -7,8 +7,8 @@ import { Button } from 'components/ui/button';
  */
 export default function SearchButton() {
   return (
-    <Button size="icon" variant="ghost" className="">
-      <Search size={24} />
+    <Button className="size-8 md:size-9" variant="ghost">
+      <Search className="size-6" />
     </Button>
   );
 }
