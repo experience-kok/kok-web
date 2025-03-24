@@ -30,10 +30,10 @@ const NAV_MENU: Menu[] = [
 export default function HeaderNav() {
   return (
     <nav className="ml-16">
-      <ul className="flex items-center">
+      <ul className="hidden items-center md:flex">
         {NAV_MENU.map((menu, index) => (
           <li className="flex items-center" key={menu.title}>
-            <Link href={menu.url} className="hover:text-primary text-xl font-bold">
+            <Link href={menu.url} className="hover:text-primary text-xl font-semibold">
               {menu.title}
             </Link>
 

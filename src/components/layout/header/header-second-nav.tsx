@@ -10,6 +10,7 @@ import HamburgerButton from './hamburger-button';
  */
 export default function HeaderSecondNav() {
   const path = usePathname();
+
   const menus = [
     { title: '홈', url: '/' },
     { title: '메디힐', url: '/mediheal' },
@@ -25,7 +26,7 @@ export default function HeaderSecondNav() {
   ];
 
   return (
-    <div className="flex h-11 w-full items-center md:h-14 md:border-b-[1px] md:border-gray-200 md:px-4 lg:px-16">
+    <div className="sticky top-0 z-10 flex h-11 w-full items-center border-b-[1px] border-gray-200 bg-white md:h-14 md:px-4 lg:px-16">
       <HamburgerButton />
       <ul className="scrollbar-hide flex h-full space-x-4 overflow-x-auto whitespace-nowrap md:ml-4">
         {menus.map((menu, index) => (

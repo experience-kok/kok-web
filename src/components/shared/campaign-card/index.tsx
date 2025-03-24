@@ -13,10 +13,10 @@ import ShareButton from './share-button';
  */
 export default function CampaignCard() {
   const testurl =
-    'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080';
+    'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080';
   return (
     <Card className="gap-2 border-none py-0 shadow-none">
-      <CardContent className="group cursor-pointer overflow-hidden rounded-lg p-0">
+      <CardContent className="group relative cursor-pointer overflow-hidden rounded-lg p-0">
         <AspectRatio ratio={1 / 1}>
           <Image
             src={testurl}
@@ -25,14 +25,13 @@ export default function CampaignCard() {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="rounded-lg object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
           />
+          <div className="absolute right-2 bottom-2">
+            <LikeButton />
+            {/* <ShareButton /> */}
+          </div>
         </AspectRatio>
       </CardContent>
       <CardFooter className="flex flex-col items-start px-0">
-        {/* 아이콘 영역 */}
-        <div className="mb-1 flex items-center gap-2">
-          <LikeButton />
-          <ShareButton />
-        </div>
         <Text className="line-clamp-2">
           [전국] 맘스터치 에드워드리 빅싸이순살 다리살? 아니 닭가슴살
         </Text>
