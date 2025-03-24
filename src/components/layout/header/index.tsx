@@ -6,6 +6,7 @@ import PaddingWrapper from 'components/layout/padding-wrapper';
 
 import HeaderSecondNav from './header-second-nav';
 import LoginButton from './login-button';
+import SearchButton from './search-button';
 
 /**
  * 헤더 레이아웃 컴포넌트
@@ -20,7 +21,12 @@ export default function Header() {
               <HeaderLogo />
               <HeaderNav />
             </div>
-            <LoginButton />
+            <div className="flex items-center gap-4">
+              <div className="hidden md:block">
+                <LoginButton />
+              </div>
+              <SearchButton />
+            </div>
           </div>
         </PaddingWrapper>
       </header>

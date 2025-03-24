@@ -17,38 +17,44 @@ export default function FooterMenu() {
   const menus: {
     icon: React.ReactNode;
     title: string;
+    url: string;
   }[] = [
     {
       icon: <Menu className="h-6 w-6" />,
       title: '카테고리',
+      url: '/category',
     },
     {
       icon: <AlarmClock className="h-6 w-6" />,
       title: '마감임박',
+      url: '/category',
     },
     {
       icon: <House className="h-6 w-6" />,
       title: '홈',
+      url: '/',
     },
     {
       icon: <Pin className="h-6 w-6" />,
       title: '콕',
+      url: '/category',
     },
     {
       icon: <UserRound className="h-6 w-6" />,
       title: '마이',
+      url: '/category',
     },
   ];
 
   return (
     <div
-      className={`fixed right-0 bottom-0 left-0 h-14 w-full bg-white transition-transform duration-300 md:hidden ${
+      className={`fixed right-0 bottom-0 left-0 h-15 w-full bg-white transition-transform duration-300 md:hidden ${
         scrollDirection === 'down' ? 'translate-y-full' : 'translate-y-0'
       }`}
     >
       <ul className="flex h-full items-center justify-around">
         {menus.map((menu, index) => (
-          <MenuItem icon={menu.icon} title={menu.title} key={menu.title + index} />
+          <MenuItem icon={menu.icon} title={menu.title} url={menu.url} key={menu.title + index} />
         ))}
       </ul>
     </div>

@@ -33,7 +33,7 @@ export default function HeaderNav() {
       <ul className="hidden items-center md:flex">
         {NAV_MENU.map((menu, index) => (
           <li className="flex items-center" key={menu.title}>
-            <Link href={menu.url} className="hover:text-primary text-xl font-bold">
+            <Link href={menu.url} className="hover:text-primary text-xl font-semibold">
               {menu.title}
             </Link>
 
