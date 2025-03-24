@@ -10,6 +10,7 @@ import HamburgerButton from './hamburger-button';
  */
 export default function HeaderSecondNav() {
   const path = usePathname();
+
   const menus = [
     { title: '홈', url: '/' },
     { title: '메디힐', url: '/mediheal' },
