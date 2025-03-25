@@ -39,12 +39,12 @@ export default function RankCampaignCard({ ranking }: Props) {
       </CardContent>
       <CardFooter className="flex-1 flex-col items-start justify-center">
         <Text className="line-clamp-2">
-          [전국] 맘스터치 에드워드리 빅싸이순살 다리살? 아니 닭가슴살
+          [4월 올영픽/파우치 증정] 메디힐 마데카소사이드 흔적 리페어 세럼 40+40mL 토이스토리 에디션
         </Text>
         <Text size="sm" color="muted-foreground" weight="semibold" className="mb-2">
-          치킨 메뉴 교환권
+          올영올영올영올영
         </Text>
-        <ProgressBar currentApplicants={25} maxApplicants={10} />
+        <ProgressBar currentApplicants={7} maxApplicants={10} />
       </CardFooter>
     </Card>
   );

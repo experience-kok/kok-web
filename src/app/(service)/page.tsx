@@ -23,18 +23,18 @@ export default function Home() {
 
       <section className="px-4 py-10 lg:px-16">
         <Text as="h2" size="2xl" weight="bold" className="mb-4">
-          브랜드관
+          카테고리 랭킹
         </Text>
-        <BrandSection />
+        <CategoryRankSection />
       </section>
 
       <SplitBox className="h-2" />
 
       <section className="px-4 py-10 lg:px-16">
         <Text as="h2" size="2xl" weight="bold" className="mb-4">
-          카테고리 랭킹
+          브랜드관
         </Text>
-        <CategoryRankSection />
+        <BrandSection />
       </section>
 
       <SplitBox className="h-2" />
