@@ -1,4 +1,5 @@
 import BrandSection from 'app/_components/brand-section';
+import CategoryRankSection from 'app/_components/category-rank-section';
 import MainBanner from 'app/_components/main-banner';
 import PopularSection from 'app/_components/popular-section';
 import SplitBox from 'components/ui/split-box';
@@ -31,9 +32,9 @@ export default function Home() {
 
       <section className="px-4 py-10 lg:px-16">
         <Text as="h2" size="2xl" weight="bold" className="mb-4">
-          임시 영역
+          카테고리 랭킹
         </Text>
-        <PopularSection />
+        <CategoryRankSection />
       </section>
 
       <SplitBox className="h-2" />
