@@ -26,15 +26,20 @@ export default function LoginPage() {
       <div className="flex w-full flex-col items-center gap-2">
         <LoginButton />
         <div className="flex items-center gap-2">
-          <Text size="sm" color="muted-foreground">
-            아이디 찾기
-          </Text>
+          <Link href="/">
+            <Text size="sm" color="muted-foreground">
+              아이디 찾기
+            </Text>
+          </Link>
+
           <Text size="sm" color="muted-foreground">
             |
           </Text>
-          <Text size="sm" color="muted-foreground">
-            비밀번호 찾기
-          </Text>
+          <Link href="/">
+            <Text size="sm" color="muted-foreground">
+              비밀번호 찾기
+            </Text>
+          </Link>
         </div>
       </div>
 
