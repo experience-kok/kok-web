@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Footer from 'components/layout/footer';
 import FooterMenu from 'components/layout/footer-menu';
 import Header from 'components/layout/header';

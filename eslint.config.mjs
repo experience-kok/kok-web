@@ -20,6 +20,7 @@ const eslintConfig = [
       //     patterns: ['.*'],
       //   },
       // ],
+      'no-undef': 'off',
 
       // HTML 엔티티 사용 가능
       'react/no-unescaped-entities': 'off',

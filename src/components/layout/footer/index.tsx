@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Text } from 'components/ui/text';
 
 const currentYear = new Date().getFullYear(); // 현재 연도 가져오기

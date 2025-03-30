@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 import HeaderLogo from 'components/layout/header/header-logo';
 import HeaderNav from 'components/layout/header/header-nav';
 import PaddingWrapper from 'components/layout/padding-wrapper';
