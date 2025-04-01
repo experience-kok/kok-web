@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from 'components/ui/button';
 import { Text } from 'components/ui/text';
 
@@ -7,8 +9,13 @@ import KakaoIcon from 'public/icons/kakao.svg';
  * 카카오 로그인 버튼 컴포넌트
  */
 export default function KakaoLoginButton() {
+  const handleKakaoLogin = () => {
+    window.location.href = '/api/auth/login?provider=kakao';
+  };
+
   return (
     <Button
+      onClick={handleKakaoLogin}
       className="h-12 w-full rounded-lg bg-[#FEE500] text-black hover:bg-[#FEE500]/90"
       style={{ color: 'rgba(0, 0, 0, 0.85)' }}
     >
