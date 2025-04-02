@@ -6,7 +6,7 @@ import { Text } from 'components/ui/text';
  */
 export default function SignUpButton() {
   return (
-    <Button className="h-12 w-full rounded-lg" variant="outline">
+    <Button className="h-12 w-full rounded-lg" variant="outline" disabled>
       <Text weight="semibold">회원가입</Text>
     </Button>
   );

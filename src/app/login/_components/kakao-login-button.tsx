@@ -5,9 +5,6 @@ import { Text } from 'components/ui/text';
 
 import KakaoIcon from 'public/icons/kakao.svg';
 
-/**
- * 카카오 로그인 버튼 컴포넌트
- */
 export default function KakaoLoginButton() {
   const handleKakaoLogin = () => {
     window.location.href = '/api/auth/login?provider=kakao';

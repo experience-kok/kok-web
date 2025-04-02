@@ -1,6 +1,8 @@
-// app/api/auth/login/route.ts
 import { NextRequest } from 'next/server';
 
+/**
+ * 로그인 URL 받아와서 redirect
+ */
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const provider = searchParams.get('provider');
@@ -11,29 +13,31 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  const apiUrl = `${process.env.NEXT_PUBLIC_KOK_BASE_URL}/api/auth/login?provider=${provider}`;
+  const requestUrl = `${process.env.NEXT_PUBLIC_KOK_BASE_URL}/auth/login?provider=${provider}`;
 
-  const res = await fetch(apiUrl, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  try {
+    const res = await fetch(requestUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-  if (!res.ok) {
-    const error = await res.json();
-    return new Response(JSON.stringify(error), { status: res.status });
-  }
+    if (!res.ok) {
+      const error = await res.json();
+      return new Response(JSON.stringify(error), { status: res.status });
+    }
 
-  const result = await res.json();
-  const loginUrl = result?.data?.loginUrl;
+    const result = await res.json();
+    const loginUrl = result?.data?.loginUrl;
 
-  if (!loginUrl) {
-    return new Response(JSON.stringify({ status: 500, message: 'No loginUrl received' }), {
+    // loginUrl로 리다이렉트
+    console.log('direct test', loginUrl);
+    return Response.redirect(loginUrl, 302);
+  } catch (error) {
+    console.error('Login redirect failed:', error);
+    return new Response(JSON.stringify({ status: 500, message: 'Internal server error' }), {
       status: 500,
     });
   }
-
-  // 로그인 URL로 바로 리다이렉트
-  return Response.redirect(loginUrl, 302);
 }
