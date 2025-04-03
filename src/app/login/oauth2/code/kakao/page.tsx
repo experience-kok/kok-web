@@ -2,10 +2,10 @@
 
 import { useEffect } from 'react';
 
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { userAtom } from 'stores/user-atoms';
+import { accessTokenAtom, refreshTokenAtom, userAtom } from 'stores/user-atoms';
 
 import { AuthResponse } from 'types/auth';
 import { APIResponse } from 'types/global';
@@ -16,7 +16,9 @@ import { APIResponse } from 'types/global';
 export default function KakaoCallbackPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [, setUser] = useAtom(userAtom);
+  const setAccessToken = useSetAtom(accessTokenAtom);
+  const setRefreshToken = useSetAtom(refreshTokenAtom);
+  const setUser = useSetAtom(userAtom);
 
   useEffect(() => {
     const handleCallback = async () => {
@@ -47,6 +49,8 @@ export default function KakaoCallbackPage() {
         const data: APIResponse<AuthResponse> = await response.json();
 
         // 유저 정보 설정
+        setAccessToken(data.data.accessToken);
+        setRefreshToken(data.data.refreshToken);
         setUser(data.data.user);
 
         // 쿠키 설정
