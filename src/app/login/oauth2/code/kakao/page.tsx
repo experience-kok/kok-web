@@ -2,8 +2,9 @@
 
 import { useEffect } from 'react';
 
-import { useAtom, useSetAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { toast } from 'sonner';
 
 import { accessTokenAtom, refreshTokenAtom, userAtom } from 'stores/user-atoms';
 
@@ -27,6 +28,11 @@ export default function KakaoCallbackPage() {
 
       if (!code || !provider) {
         console.error('provider 또는 code값을 찾을 수 없습니다.');
+        toast.error('로그인 정보를 찾을 수 없습니다.', {
+          position: 'top-center',
+          duration: 3000,
+        });
+        router.push('/login');
         return;
       }
 
@@ -59,15 +65,28 @@ export default function KakaoCallbackPage() {
 
         // 로그인 성공 후 메인 페이지로 리다이렉트
         router.push('/');
+
+        // !TODO 로그인 성공 토스트 출력 시점이 네트워크에 따라 달라질 수 있음
+        setTimeout(() => {
+          toast.success(`${data.data.user.nickname}님, 환영합니다!`, {
+            position: 'top-center',
+            duration: 3000,
+          });
+        }, 1000);
       } catch (error) {
         console.error('Login error:', error);
+        // 에러 발생 시 토스트
+        toast.error('잠시 후 다시 시도해주세요.', {
+          position: 'top-center',
+          duration: 3000,
+        });
         // 에러 발생 시 로그인 페이지로 리다이렉트
         router.push('/login');
       }
     };
 
     handleCallback();
-  }, [router, searchParams, setUser]);
+  }, [router, searchParams, setUser, setAccessToken, setRefreshToken]);
 
   return (
     <div className="flex h-screen items-center justify-center">
