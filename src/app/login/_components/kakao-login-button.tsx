@@ -7,7 +7,9 @@ import KakaoIcon from 'public/icons/kakao.svg';
 
 export default function KakaoLoginButton() {
   const handleKakaoLogin = () => {
-    window.location.href = '/api/auth/login?provider=kakao';
+    const callbackBaseUrl =
+      process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://ckok.kr';
+    window.location.href = `https://ckok.kr/api/auth/login-redirect?redirectUri=${callbackBaseUrl}/login/oauth2/code/kakao`;
   };
 
   return (

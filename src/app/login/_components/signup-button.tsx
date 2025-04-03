@@ -2,7 +2,7 @@ import { Button } from 'components/ui/button';
 import { Text } from 'components/ui/text';
 
 /**
- * 회원가입 버튼 컴포넌트ㄴ
+ * 회원가입 버튼 컴포넌트
  */
 export default function SignUpButton() {
   return (
