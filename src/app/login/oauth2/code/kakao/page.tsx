@@ -2,7 +2,10 @@
 
 import { useEffect } from 'react';
 
+import { useAtom } from 'jotai';
 import { useRouter, useSearchParams } from 'next/navigation';
+
+import { userAtom } from 'stores/user-atoms';
 
 import { AuthResponse } from 'types/auth';
 import { APIResponse } from 'types/global';
@@ -13,6 +16,7 @@ import { APIResponse } from 'types/global';
 export default function KakaoCallbackPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [, setUser] = useAtom(userAtom);
 
   useEffect(() => {
     const handleCallback = async () => {
@@ -42,6 +46,9 @@ export default function KakaoCallbackPage() {
 
         const data: APIResponse<AuthResponse> = await response.json();
 
+        // 유저 정보 설정
+        setUser(data.data.user);
+
         // 쿠키 설정
         document.cookie = `accessToken=${data.data.accessToken}; path=/; max-age=3600; SameSite=Strict`;
         document.cookie = `refreshToken=${data.data.refreshToken}; path=/; max-age=604800; SameSite=Strict`;
@@ -56,7 +63,7 @@ export default function KakaoCallbackPage() {
     };
 
     handleCallback();
-  }, [router, searchParams]);
+  }, [router, searchParams, setUser]);
 
   return (
     <div className="flex h-screen items-center justify-center">

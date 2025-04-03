@@ -2,8 +2,6 @@
 
 import { PropsWithChildren } from 'react';
 
-import Link from 'next/link';
-
 import getQueryClient from 'configs/tanstack-query/get-query-client';
 
 import { QueryClientProvider } from '@tanstack/react-query';
