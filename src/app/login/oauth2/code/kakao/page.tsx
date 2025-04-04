@@ -3,10 +3,9 @@
 import { useEffect } from 'react';
 
 import { useSetAtom } from 'jotai';
+import dynamic from 'next/dynamic';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
-
-import LottieLoader from 'components/shared/lottie-loader';
 
 import { accessTokenAtom, refreshTokenAtom, userAtom } from 'stores/user-atoms';
 
@@ -14,6 +13,8 @@ import { AuthResponse } from 'types/auth';
 import { APIResponse } from 'types/global';
 
 import LoadingLottie from 'public/lotties/loading.json';
+
+const LottieLoader = dynamic(() => import('components/shared/lottie-loader'));
 
 /**
  * 카카오 로그인 콜백 페이지
