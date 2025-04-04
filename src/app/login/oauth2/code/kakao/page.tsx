@@ -41,6 +41,9 @@ export default function KakaoCallbackPage() {
       }
 
       try {
+        // 현재 환경에 따른 리다이렉트 URL 설정
+        const redirectUri = `${process.env.NEXT_PUBLIC_LOGIN_REDIRECT_URI}/kakao`;
+
         const response = await fetch(`/api/auth/${provider}`, {
           method: 'POST',
           headers: {
@@ -48,7 +51,7 @@ export default function KakaoCallbackPage() {
           },
           body: JSON.stringify({
             authorizationCode: code,
-            redirectUri: window.location.href.split('?')[0], // 현재 URL에서 쿼리 파라미터 제외
+            redirectUri,
           }),
         });
 
