@@ -47,7 +47,7 @@ const resolver = async <T>(response: Response): Promise<APIResponse<T>> => {
   }
 
   return {
-    data: json.data, // ✅ 여기서 벗겨줌!
+    data: json.data,
     status: json.status,
     message: json.message,
     success: true,

@@ -11,8 +11,6 @@ import { accessTokenAtom, refreshTokenAtom, userAtom } from 'stores/user-atoms';
 
 import { AuthResponse } from 'types/auth';
 
-import clientFetcher from 'utils/client-side/client-fetcher';
-
 import LoadingLottie from 'public/lotties/loading.json';
 
 const LottieLoader = dynamic(() => import('components/shared/lottie-loader'), {
@@ -40,44 +38,60 @@ export default function KakaoCallbackPage() {
         return;
       }
 
-      const redirectUri = `${process.env.NEXT_PUBLIC_LOGIN_REDIRECT_URI}/kakao`;
+      try {
+        const redirectUri = `${process.env.NEXT_PUBLIC_LOGIN_REDIRECT_URI}/kakao`;
+        console.log('Redirect URI:', redirectUri);
 
-      const res = await clientFetcher.post<AuthResponse>(`/api/auth/${provider}`, {
-        authorizationCode: code,
-        redirectUri,
-      });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BFF_BASE_URL}/api/auth/${provider}`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              authorizationCode: code,
+              redirectUri,
+            }),
+          },
+        );
 
-      if (!res.success) {
-        console.error(`[${res.errorCode}] ${res.message}`);
-        toast.error(res.message || '잠시 후 다시 시도해주세요.', {
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          console.error(`[${data.errorCode}] ${data.message}`);
+          throw new Error(data.message || '로그인에 실패했습니다.');
+        }
+
+        const { accessToken, refreshToken, user, loginType } = data.data;
+
+        setAccessToken(accessToken);
+        setRefreshToken(refreshToken);
+        setUser(user);
+
+        // 쿠키 설정
+        document.cookie = `accessToken=${accessToken}; path=/; max-age=3600; SameSite=Strict`;
+        document.cookie = `refreshToken=${refreshToken}; path=/; max-age=604800; SameSite=Strict`;
+
+        if (loginType === 'login') {
+          router.push('/');
+
+          setTimeout(() => {
+            toast.success(`${user.nickname}님, 환영합니다!`, {
+              position: 'top-center',
+              duration: 3000,
+            });
+          }, 1000);
+        } else if (loginType === 'registration') {
+          router.push('/welcome');
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        toast.error(error instanceof Error ? error.message : '잠시 후 다시 시도해주세요.', {
           position: 'top-center',
           duration: 3000,
         });
         router.push('/login');
-        return;
-      }
-
-      const { accessToken, refreshToken, user, loginType } = res.data;
-
-      setAccessToken(accessToken);
-      setRefreshToken(refreshToken);
-      setUser(user);
-
-      // 쿠키 설정
-      document.cookie = `accessToken=${accessToken}; path=/; max-age=3600; SameSite=Strict`;
-      document.cookie = `refreshToken=${refreshToken}; path=/; max-age=604800; SameSite=Strict`;
-
-      if (loginType === 'login') {
-        router.push('/');
-
-        setTimeout(() => {
-          toast.success(`${user.nickname}님, 환영합니다!`, {
-            position: 'top-center',
-            duration: 3000,
-          });
-        }, 1000);
-      } else if (loginType === 'registration') {
-        router.push('/welcome');
       }
     };
 
