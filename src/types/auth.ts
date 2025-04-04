@@ -9,7 +9,7 @@ export interface User {
 
 // 로그인 응답
 export interface AuthResponse {
-  refreshToken: string;
   user: User;
+  refreshToken: string;
   accessToken: string;
 }

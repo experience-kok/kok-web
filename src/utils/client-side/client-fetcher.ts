@@ -35,17 +35,22 @@ const defaultOptions: Record<Method, RequestInit> = {
 };
 
 const resolver = async <T>(response: Response): Promise<APIResponse<T>> => {
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Error: ${response.status}, Response: ${errorText}`);
-  }
-
   const json = await response.json();
 
+  if (!response.ok || !json.success) {
+    return {
+      errorCode: json?.errorCode ?? 'UNKNOWN_ERROR',
+      status: json?.status ?? response.status,
+      message: json?.message ?? response.statusText,
+      success: false,
+    };
+  }
+
   return {
-    data: json,
-    status: response.status,
-    message: response.statusText || 'Success',
+    data: json.data, // ✅ 여기서 벗겨줌!
+    status: json.status,
+    message: json.message,
+    success: true,
   };
 };
 
@@ -69,12 +74,12 @@ const fetcher = async <T>(
     const response = await fetch(requestUrl, combinedOptions);
     return await resolver<T>(response);
   } catch (error) {
-    // 에러 발생 시 APIResponse 형식으로 반환
-    throw {
-      data: null as T,
+    return {
+      errorCode: 'CLIENT_FETCH_ERROR',
       status: 500,
       message: error instanceof Error ? error.message : 'Client-side Fetching Error',
-    } as APIResponse<T>;
+      success: false,
+    };
   }
 };
 
