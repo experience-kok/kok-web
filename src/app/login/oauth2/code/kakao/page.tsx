@@ -57,7 +57,7 @@ export default function KakaoCallbackPage() {
         return;
       }
 
-      const { accessToken, refreshToken, user } = res.data;
+      const { accessToken, refreshToken, user, loginType } = res.data;
 
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
@@ -67,14 +67,18 @@ export default function KakaoCallbackPage() {
       document.cookie = `accessToken=${accessToken}; path=/; max-age=3600; SameSite=Strict`;
       document.cookie = `refreshToken=${refreshToken}; path=/; max-age=604800; SameSite=Strict`;
 
-      router.push('/');
+      if (loginType === 'login') {
+        router.push('/');
 
-      setTimeout(() => {
-        toast.success(`${user.nickname}님, 환영합니다!`, {
-          position: 'top-center',
-          duration: 3000,
-        });
-      }, 1000);
+        setTimeout(() => {
+          toast.success(`${user.nickname}님, 환영합니다!`, {
+            position: 'top-center',
+            duration: 3000,
+          });
+        }, 1000);
+      } else if (loginType === 'registration') {
+        router.push('/welcome');
+      }
     };
 
     handleCallback();

@@ -12,4 +12,5 @@ export interface AuthResponse {
   user: User;
   refreshToken: string;
   accessToken: string;
+  loginType: 'registration' | 'login';
 }

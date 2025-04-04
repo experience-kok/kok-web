@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import { Button } from 'components/ui/button';
 import { Text } from 'components/ui/text';
 
@@ -20,10 +22,14 @@ export default function WelcomePage() {
           프로필을 등록하고 다양한 서비스를 즐겨보세요!
         </Text>
         <div className="flex w-full gap-4">
-          <Button className="h-12 flex-1 text-lg font-semibold">메인 화면으로</Button>
-          <Button className="h-12 flex-1 text-lg font-semibold" variant="outline">
-            프로필 등록하기
-          </Button>
+          <Link href="/" className="flex-1">
+            <Button className="h-12 w-full text-lg font-semibold">메인 화면으로</Button>
+          </Link>
+          <Link href="/profile" className="flex-1">
+            <Button className="h-12 w-full text-lg font-semibold" variant="outline">
+              프로필 등록하기
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
