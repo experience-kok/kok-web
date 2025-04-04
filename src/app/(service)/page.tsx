@@ -1,5 +1,3 @@
-'use client';
-
 import BrandSection from 'app/_components/brand-section';
 import CategoryRankSection from 'app/_components/category-rank-section';
 import MainBanner from 'app/_components/main-banner';
