@@ -6,10 +6,14 @@ import { useSetAtom } from 'jotai';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 
+import LottieLoader from 'components/shared/lottie-loader';
+
 import { accessTokenAtom, refreshTokenAtom, userAtom } from 'stores/user-atoms';
 
 import { AuthResponse } from 'types/auth';
 import { APIResponse } from 'types/global';
+
+import LoadingLottie from 'public/lotties/loading.json';
 
 /**
  * 카카오 로그인 콜백 페이지
@@ -89,10 +93,11 @@ export default function KakaoCallbackPage() {
   }, [router, searchParams, setUser, setAccessToken, setRefreshToken]);
 
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold">로그인 처리 중...</h1>
-        <p className="mt-2 text-gray-600">잠시만 기다려주세요.</p>
+    <div className="flex h-screen w-full items-center justify-center">
+      <div className="flex flex-col items-center">
+        <LottieLoader animationData={LoadingLottie} className="h-48 w-48 md:h-60 md:w-60" />
+        <h1 className="text-center text-2xl font-bold">로그인을 처리 중이에요...</h1>
+        <p className="mt-2 text-center text-gray-600">잠시만 기다려주세요</p>
       </div>
     </div>
   );
