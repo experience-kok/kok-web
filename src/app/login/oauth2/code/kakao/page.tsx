@@ -14,7 +14,9 @@ import { APIResponse } from 'types/global';
 
 import LoadingLottie from 'public/lotties/loading.json';
 
-const LottieLoader = dynamic(() => import('components/shared/lottie-loader'));
+const LottieLoader = dynamic(() => import('components/shared/lottie-loader'), {
+  ssr: false,
+});
 
 /**
  * 카카오 로그인 콜백 페이지
