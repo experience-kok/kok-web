@@ -59,16 +59,32 @@ const fetcher = async <T>(
   url: string,
   options?: RequestInit,
 ): Promise<APIResponse<T>> => {
-  const combinedOptions = {
-    ...defaultOptions[method],
-    ...options,
-  };
-
   const BASE_URL = process.env.NEXT_PUBLIC_BFF_BASE_URL;
   const requestUrl = `${BASE_URL}${url}`;
 
-  console.log(`Environment: ${typeof window !== 'undefined' ? 'Client' : 'Server'}`);
-  console.log('Request URL:', requestUrl);
+  // 브라우저 환경에서 accessToken을 로드
+  let accessToken: string | null = null;
+  if (typeof window !== 'undefined') {
+    accessToken = localStorage.getItem('accessToken')?.replace(/"/g, '') ?? null;
+  }
+
+  console.log(`Bearer ${accessToken}`);
+  // 기본 헤더 + Authorization 헤더 병합
+  const headers: HeadersInit = {
+    ...defaultOptions[method].headers,
+    ...(options?.headers ?? {}),
+    ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
+  };
+
+  const combinedOptions: RequestInit = {
+    ...defaultOptions[method],
+    ...options,
+    headers,
+  };
+
+  // console.log(`Environment: ${typeof window !== 'undefined' ? 'Client' : 'Server'}`);
+  // console.log('Request URL:', requestUrl);
+  // console.log('AccessToken:', accessToken);
 
   try {
     const response = await fetch(requestUrl, combinedOptions);
@@ -87,15 +103,28 @@ const clientFetcher = {
   get: async <T>(url: string, options?: RequestInit): Promise<APIResponse<T>> => {
     return fetcher<T>('GET', url, options);
   },
-  post: async <T>(url: string, body: unknown, options?: RequestInit): Promise<APIResponse<T>> => {
-    return fetcher<T>('POST', url, { ...options, body: JSON.stringify(body) });
+
+  post: async <T>(url: string, body?: unknown, options?: RequestInit): Promise<APIResponse<T>> => {
+    return fetcher<T>('POST', url, {
+      ...options,
+      ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
+    });
   },
-  put: async <T>(url: string, body: unknown, options?: RequestInit): Promise<APIResponse<T>> => {
-    return fetcher<T>('PUT', url, { ...options, body: JSON.stringify(body) });
+
+  put: async <T>(url: string, body?: unknown, options?: RequestInit): Promise<APIResponse<T>> => {
+    return fetcher<T>('PUT', url, {
+      ...options,
+      ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
+    });
   },
-  patch: async <T>(url: string, body: unknown, options?: RequestInit): Promise<APIResponse<T>> => {
-    return fetcher<T>('PATCH', url, { ...options, body: JSON.stringify(body) });
+
+  patch: async <T>(url: string, body?: unknown, options?: RequestInit): Promise<APIResponse<T>> => {
+    return fetcher<T>('PATCH', url, {
+      ...options,
+      ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
+    });
   },
+
   delete: async <T>(url: string, options?: RequestInit): Promise<APIResponse<T>> => {
     return fetcher<T>('DELETE', url, options);
   },

@@ -12,3 +12,11 @@ export const getLoginUrl = (provider: OAuthProvider) => {
   const response = clientFetcher.get<GetLoginUrlResponse>(`/api/auth/login?${query}`);
   return response;
 };
+
+/**
+ * 로그아웃
+ */
+export const postLogout = () => {
+  const response = clientFetcher.post<null>(`/api/auth/logout`);
+  return response;
+};

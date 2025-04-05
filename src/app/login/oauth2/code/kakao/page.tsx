@@ -9,8 +9,6 @@ import { toast } from 'sonner';
 
 import { accessTokenAtom, refreshTokenAtom, userAtom } from 'stores/user-atoms';
 
-import { AuthResponse } from 'types/auth';
-
 import LoadingLottie from 'public/lotties/loading.json';
 
 const LottieLoader = dynamic(() => import('components/shared/lottie-loader'), {
@@ -70,8 +68,8 @@ export default function KakaoCallbackPage() {
         setUser(user);
 
         // 쿠키 설정
-        document.cookie = `accessToken=${accessToken}; path=/; max-age=3600; SameSite=Strict`;
-        document.cookie = `refreshToken=${refreshToken}; path=/; max-age=604800; SameSite=Strict`;
+        document.cookie = `accessToken=${accessToken.replace(/"/g, '')}; path=/; max-age=3600; SameSite=Strict`;
+        document.cookie = `refreshToken=${refreshToken.replace(/"/g, '')}; path=/; max-age=604800; SameSite=Strict`;
 
         if (loginType === 'login') {
           router.push('/');

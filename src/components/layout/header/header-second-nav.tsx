@@ -32,7 +32,7 @@ export default function HeaderSecondNav() {
         {menus.map((menu, index) => (
           <li
             key={index}
-            className={`flex items-center justify-center border-b-2 font-semibold md:px-1 md:text-lg ${
+            className={`md:text-md flex items-center justify-center border-b-2 font-semibold md:px-1 ${
               path === menu.url
                 ? 'border-primary font-bold'
                 : 'text-muted-foreground border-transparent'
