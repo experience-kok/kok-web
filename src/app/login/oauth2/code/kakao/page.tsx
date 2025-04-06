@@ -28,7 +28,7 @@ export default function KakaoCallbackPage() {
       const provider = window.location.pathname.split('/').pop(); // 'kakao' 추출
 
       if (!code || !provider) {
-        toast.error('로그인 정보를 찾을 수 없습니다.', {
+        toast.error('로그인 정보를 찾을 수 없어요.', {
           position: 'top-center',
           duration: 3000,
         });
@@ -58,7 +58,7 @@ export default function KakaoCallbackPage() {
 
         if (!response.ok || !data.success) {
           console.error(`[${data.errorCode}] ${data.message}`);
-          throw new Error(data.message || '로그인에 실패했습니다.');
+          throw new Error(data.message || '로그인에 실패했어요.');
         }
 
         const { accessToken, refreshToken, user, loginType } = data.data;
@@ -75,7 +75,7 @@ export default function KakaoCallbackPage() {
           router.push('/');
 
           setTimeout(() => {
-            toast.success(`${user.nickname}님, 환영합니다!`, {
+            toast.success(`${user.nickname}님, 환영해요!`, {
               position: 'top-center',
               duration: 3000,
             });
