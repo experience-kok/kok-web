@@ -1,6 +1,8 @@
+import { cookieManager } from 'libs/cookie-manager';
+
 import clientFetcher from 'utils/client-side/client-fetcher';
 
-import { GetLoginUrlResponse, OAuthProvider } from './auth-types';
+import { GetLoginUrlResponse, OAuthProvider, PostRefreshResponse } from './auth-types';
 
 /**
  * OAuth 로그인 URL 받아오기
@@ -18,5 +20,16 @@ export const getLoginUrl = (provider: OAuthProvider) => {
  */
 export const postLogout = () => {
   const response = clientFetcher.post<null>(`/api/auth/logout`);
+  return response;
+};
+
+/**
+ * 토큰 재발급
+ */
+export const postRefresh = () => {
+  const refreshToken = cookieManager.get('refreshToken');
+  const response = clientFetcher.post<PostRefreshResponse>(`/api/auth/refresh`, {
+    refreshToken,
+  });
   return response;
 };

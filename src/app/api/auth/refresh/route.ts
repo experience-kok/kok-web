@@ -1,5 +1,4 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 
 import { getAccessToken } from 'utils/server-side/get-access-token';
 import { getRequestUrl } from 'utils/server-side/get-request-url';
@@ -7,15 +6,16 @@ import { getRequestUrl } from 'utils/server-side/get-request-url';
 export async function POST(request: NextRequest) {
   try {
     const accessToken = getAccessToken(request);
-    const requestUrl = getRequestUrl('/auth/logout');
+    const requestUrl = getRequestUrl('/auth/refresh');
+    const { refreshToken } = await request.json();
 
-    // accessToken을 Authorization 헤더에 포함해서 API 서버로 요청
     const response = await fetch(requestUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
       },
+      body: JSON.stringify({ refreshToken }),
     });
 
     if (!response.ok) {
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
-    console.error('로그아웃 에러: ', error);
-    return NextResponse.json({ error: '로그아웃 실패' }, { status: 500 });
+    console.error('토큰 갱신 에러: ', error);
+    return NextResponse.json({ error: '토큰 갱신 실패' }, { status: 500 });
   }
 }
