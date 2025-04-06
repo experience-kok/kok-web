@@ -7,7 +7,9 @@ import dynamic from 'next/dynamic';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 
-import { accessTokenAtom, refreshTokenAtom, userAtom } from 'stores/user-atoms';
+import { cookieManager } from 'libs/cookie-manager';
+
+import { userAtom } from 'stores/user-atoms';
 
 import LoadingLottie from 'public/lotties/loading.json';
 
@@ -18,8 +20,7 @@ const LottieLoader = dynamic(() => import('components/shared/lottie-loader'), {
 export default function KakaoCallbackPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const setAccessToken = useSetAtom(accessTokenAtom);
-  const setRefreshToken = useSetAtom(refreshTokenAtom);
+
   const setUser = useSetAtom(userAtom);
 
   useEffect(() => {
@@ -38,7 +39,6 @@ export default function KakaoCallbackPage() {
 
       try {
         const redirectUri = `${process.env.NEXT_PUBLIC_LOGIN_REDIRECT_URI}/kakao`;
-        console.log('Redirect URI:', redirectUri);
 
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_BFF_BASE_URL}/api/auth/${provider}`,
@@ -63,13 +63,19 @@ export default function KakaoCallbackPage() {
 
         const { accessToken, refreshToken, user, loginType } = data.data;
 
-        setAccessToken(accessToken);
-        setRefreshToken(refreshToken);
         setUser(user);
 
         // 쿠키 설정
-        document.cookie = `accessToken=${accessToken.replace(/"/g, '')}; path=/; max-age=3600; SameSite=Strict`;
-        document.cookie = `refreshToken=${refreshToken.replace(/"/g, '')}; path=/; max-age=604800; SameSite=Strict`;
+        cookieManager.set('accessToken', accessToken.replace(/"/g, ''), {
+          path: '/',
+          expires: 3600,
+          sameSite: 'Strict',
+        });
+        cookieManager.set('refreshToken', refreshToken.replace(/"/g, ''), {
+          path: '/',
+          expires: 3600,
+          sameSite: 'Strict',
+        });
 
         if (loginType === 'login') {
           router.push('/');
@@ -94,7 +100,7 @@ export default function KakaoCallbackPage() {
     };
 
     handleCallback();
-  }, [router, searchParams, setUser, setAccessToken, setRefreshToken]);
+  }, [router, searchParams, setUser]);
 
   return (
     <div className="flex h-screen w-full items-center justify-center">
