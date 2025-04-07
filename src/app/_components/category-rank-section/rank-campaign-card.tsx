@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import ApplicatnsCount from 'components/shared/campaign-card/applicants-count';
+import CampaignTypeBadge from 'components/shared/campaign-card/campaign-type-badge';
 import LikeButton from 'components/shared/campaign-card/like-button';
 import ProgressBar from 'components/shared/campaign-card/progress-bar';
 import { AspectRatio } from 'components/ui/aspect-ratio';
@@ -38,13 +40,24 @@ export default function RankCampaignCard({ ranking }: Props) {
         </div>
       </CardContent>
       <CardFooter className="flex-1 flex-col items-start justify-center">
+        <div className="scrollbar-hide mb-2 flex w-full items-center gap-2 overflow-x-auto">
+          <CampaignTypeBadge campaignType="YOUTUBE" />
+          <CampaignTypeBadge campaignType="NAVER_BLOG" />
+        </div>
         <Text className="line-clamp-2">
           [4월 올영픽/파우치 증정] 메디힐 마데카소사이드 흔적 리페어 세럼 40+40mL 토이스토리 에디션
         </Text>
-        <Text size="sm" color="muted-foreground" weight="semibold" className="mb-2">
-          올영올영올영올영
-        </Text>
-        <ProgressBar currentApplicants={7} maxApplicants={10} />
+        <div className="mb-2 flex items-center gap-1">
+          <Text size="sm" color="primary" weight="bold">
+            1일 남음
+          </Text>
+          <Text size="sm" color="muted-foreground" weight="semibold">
+            치킨 메뉴 교환권
+          </Text>
+        </div>
+        <div className="flex w-full justify-end">
+          <ApplicatnsCount currentApplicants={7} maxApplicants={10} />
+        </div>
       </CardFooter>
     </Card>
   );

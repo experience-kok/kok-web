@@ -4,7 +4,7 @@ import router from 'next/router';
 
 import { cookieManager } from 'libs/cookie-manager';
 
-import { APIResponse } from 'types/global';
+import { APIResponse, ErrorResponse, SuccessResponse } from 'types/global';
 
 type Method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
@@ -16,6 +16,8 @@ const defaultOptions: Record<Method, RequestInit> = {
   DELETE: { method: 'DELETE' },
 };
 
+// 토큰 재발급
+// !TODO 외부 auth-api로 나눌 예정
 const refreshToken = async (): Promise<boolean> => {
   try {
     const storedRefreshToken = cookieManager.get('refreshToken');
@@ -47,6 +49,14 @@ const refreshToken = async (): Promise<boolean> => {
   return false;
 };
 
+/**
+ * 인증 관련 에러 핸들러
+ * @param method
+ * @param url
+ * @param options
+ * @param responseJson
+ * @returns
+ */
 const handleAuthError = async <T>(
   method: Method,
   url: string,
@@ -60,19 +70,18 @@ const handleAuthError = async <T>(
 ): Promise<APIResponse<T>> => {
   const errorCode = responseJson?.errorCode;
 
-  // 토큰 만료
+  // 액세스 토큰 만료 -> 재발급
   if (errorCode === 'TOKEN_EXPIRED') {
     const refreshed = await refreshToken();
     if (refreshed) {
-      return fetcher<T>(method, url, options); // 재시도
+      return fetcher<T>(method, url, options); // 🔁 accessToken 재발급 후 재요청
     }
   }
 
-  // 유효하지 않은 리프레시 토큰 -> 재로그인 필요
-  if (errorCode === 'INVALID_REFRESH_TOKEN') {
+  // 리프레시 토큰이 유효하지 않거나 기타 인증 오류
+  if (errorCode === 'INVALID_REFRESH_TOKEN' || errorCode === 'UNAUTHORIZED') {
     cookieManager.delete('accessToken');
     cookieManager.delete('refreshToken');
-
     router.replace('/login');
   }
 
@@ -81,7 +90,7 @@ const handleAuthError = async <T>(
     status: responseJson?.status ?? 401,
     message: responseJson?.message ?? '인증 오류',
     success: false,
-  };
+  } as ErrorResponse;
 };
 
 const resolver = async <T>(
@@ -90,27 +99,30 @@ const resolver = async <T>(
   options: RequestInit,
   response: Response,
 ): Promise<APIResponse<T>> => {
-  const json = await response.json();
+  const json = (await response.json()) as APIResponse<T>;
 
+  // 에러 핸들링
   if (!response.ok || !json.success) {
+    // 인증 에러일 경우
     if (response.status === 401) {
       return handleAuthError<T>(method, url, options, json);
     }
 
     return {
-      errorCode: json?.errorCode ?? 'UNKNOWN_ERROR',
-      status: json?.status ?? response.status,
-      message: json?.message ?? response.statusText,
+      errorCode: 'UNKNOWN_ERROR',
+      status: response.status,
+      message: response.statusText,
       success: false,
-    };
+    } as ErrorResponse;
   }
 
+  // 정상 응답 반환
   return {
     data: json.data,
     status: json.status,
     message: json.message,
     success: true,
-  };
+  } as SuccessResponse<T>;
 };
 
 const fetcher = async <T>(
@@ -126,12 +138,14 @@ const fetcher = async <T>(
     accessToken = cookieManager.get('accessToken');
   }
 
+  // 헤더 설정
   const headers: HeadersInit = {
     ...defaultOptions[method].headers,
     ...(options?.headers ?? {}),
     ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
   };
 
+  // 옵션 병합
   const combinedOptions: RequestInit = {
     ...defaultOptions[method],
     ...options,
@@ -148,7 +162,7 @@ const fetcher = async <T>(
       status: 500,
       message: error instanceof Error ? error.message : 'Client-side Fetching Error',
       success: false,
-    };
+    } as ErrorResponse;
   }
 };
 
