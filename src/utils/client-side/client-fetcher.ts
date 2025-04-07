@@ -100,12 +100,12 @@ const resolver = async <T>(
   response: Response,
 ): Promise<APIResponse<T>> => {
   const json = (await response.json()) as APIResponse<T>;
-  console.log(json);
 
   // 에러 핸들링
   if (!response.ok || !json.success) {
     // 인증 에러일 경우
     if (response.status === 401) {
+      console.log('ts');
       return handleAuthError<T>(method, url, options, json);
     }
 
@@ -133,7 +133,6 @@ const fetcher = async <T>(
 ): Promise<APIResponse<T>> => {
   const BASE_URL = process.env.NEXT_PUBLIC_BFF_BASE_URL;
   const requestUrl = `${BASE_URL}${url}`;
-  console.log(requestUrl);
 
   let accessToken: string | null = null;
   if (typeof window !== 'undefined') {
