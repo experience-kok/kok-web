@@ -74,7 +74,7 @@ const handleAuthError = async <T>(
   if (errorCode === 'TOKEN_EXPIRED') {
     const refreshed = await refreshToken();
     if (refreshed) {
-      return fetcher<T>(method, url, options); // 🔁 accessToken 재발급 후 재요청
+      return fetcher<T>(method, url, options);
     }
   }
 
@@ -100,6 +100,7 @@ const resolver = async <T>(
   response: Response,
 ): Promise<APIResponse<T>> => {
   const json = (await response.json()) as APIResponse<T>;
+  console.log(json);
 
   // 에러 핸들링
   if (!response.ok || !json.success) {
