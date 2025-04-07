@@ -40,19 +40,16 @@ export default function KakaoCallbackPage() {
       try {
         const redirectUri = `${process.env.NEXT_PUBLIC_LOGIN_REDIRECT_URI}/kakao`;
 
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BFF_BASE_URL}/api/auth/${provider}`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              authorizationCode: code,
-              redirectUri,
-            }),
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BFF_BASE_URL}/auth/${provider}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
           },
-        );
+          body: JSON.stringify({
+            authorizationCode: code,
+            redirectUri,
+          }),
+        });
 
         const data = await response.json();
 

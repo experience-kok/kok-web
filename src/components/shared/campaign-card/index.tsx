@@ -44,9 +44,7 @@ export default function CampaignCard() {
         <Text size="sm" color="muted-foreground" weight="semibold" className="mb-2">
           치킨 메뉴 교환권
         </Text>
-        <div className="flex w-full justify-end">
-          <ApplicatnsCount maxApplicants={10} currentApplicants={25} />
-        </div>
+        <ApplicatnsCount maxApplicants={10} currentApplicants={25} />
         {/* <ProgressBar currentApplicants={25} maxApplicants={10} /> */}
       </CardFooter>
     </Card>

@@ -27,7 +27,7 @@ const refreshToken = async (): Promise<boolean> => {
       return false;
     }
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BFF_BASE_URL}/api/auth/refresh`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BFF_BASE_URL}/auth/refresh`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -133,6 +133,7 @@ const fetcher = async <T>(
 ): Promise<APIResponse<T>> => {
   const BASE_URL = process.env.NEXT_PUBLIC_BFF_BASE_URL;
   const requestUrl = `${BASE_URL}${url}`;
+  console.log(requestUrl);
 
   let accessToken: string | null = null;
   if (typeof window !== 'undefined') {

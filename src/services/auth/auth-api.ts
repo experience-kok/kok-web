@@ -11,7 +11,7 @@ import { GetLoginUrlResponse, OAuthProvider, PostRefreshResponse } from './auth-
 export const getLoginUrl = (provider: OAuthProvider) => {
   const query = new URLSearchParams(provider).toString();
 
-  const response = clientFetcher.get<GetLoginUrlResponse>(`/api/auth/login?${query}`);
+  const response = clientFetcher.get<GetLoginUrlResponse>(`/auth/login?${query}`);
   return response;
 };
 
@@ -19,7 +19,7 @@ export const getLoginUrl = (provider: OAuthProvider) => {
  * 로그아웃
  */
 export const postLogout = () => {
-  const response = clientFetcher.post<null>(`/api/auth/logout`);
+  const response = clientFetcher.post<null>(`/auth/logout`);
   return response;
 };
 
@@ -28,8 +28,10 @@ export const postLogout = () => {
  */
 export const postRefresh = () => {
   const refreshToken = cookieManager.get('refreshToken');
-  const response = clientFetcher.post<PostRefreshResponse>(`/api/auth/refresh`, {
+  const response = clientFetcher.post<PostRefreshResponse>(`/auth/refresh`, {
     refreshToken,
   });
+
+  console.log(response);
   return response;
 };
