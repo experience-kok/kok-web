@@ -28,7 +28,7 @@ export const postLogout = () => {
  */
 export const postRefresh = () => {
   const refreshToken = cookieManager.get('refreshToken');
-  const response = clientFetcher.post<PostRefreshResponse>(`/api/auth/refresh`, {
+  const response = clientFetcher.post<PostRefreshResponse>(`/api/auth/refreshss`, {
     refreshToken,
   });
   return response;
