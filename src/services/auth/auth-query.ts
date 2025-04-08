@@ -5,6 +5,7 @@ import { cookieManager } from 'libs/cookie-manager';
 
 import { userAtom } from 'stores/user-atoms';
 
+import { useQuery } from '@tanstack/react-query';
 import { useMutation } from '@tanstack/react-query';
 
 import { postLogout } from './auth-api';

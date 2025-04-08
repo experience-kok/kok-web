@@ -32,6 +32,5 @@ export const postRefresh = () => {
     refreshToken,
   });
 
-  console.log(response);
   return response;
 };

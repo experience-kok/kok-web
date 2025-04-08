@@ -1,8 +1,11 @@
 'use client';
 
 import router from 'next/router';
+import { toast } from 'sonner';
 
 import { cookieManager } from 'libs/cookie-manager';
+
+import { postRefresh } from 'services/auth/auth-api';
 
 import { APIResponse, ErrorResponse, SuccessResponse } from 'types/global';
 
@@ -20,33 +23,18 @@ const defaultOptions: Record<Method, RequestInit> = {
 // !TODO 외부 auth-api로 나눌 예정
 const refreshToken = async (): Promise<boolean> => {
   try {
-    const storedRefreshToken = cookieManager.get('refreshToken');
+    const response = await postRefresh();
 
-    if (!storedRefreshToken) {
-      router.replace('/login');
-      return false;
-    }
-
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BFF_BASE_URL}/auth/refresh`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify({ refreshToken: storedRefreshToken }),
-    });
-
-    const data = await res.json();
-
-    if (res.ok && data.success && data.data?.accessToken) {
-      cookieManager.set('accessToken', data.data.accessToken);
+    if (response.success && response.data?.accessToken) {
+      cookieManager.set('accessToken', response.data.accessToken);
       return true;
     }
+
+    return false;
   } catch (e) {
     console.error('Token refresh failed:', e);
+    return false;
   }
-
-  return false;
 };
 
 /**
@@ -69,6 +57,7 @@ const handleAuthError = async <T>(
   },
 ): Promise<APIResponse<T>> => {
   const errorCode = responseJson?.errorCode;
+  console.log('s');
 
   // 액세스 토큰 만료 -> 재발급
   if (errorCode === 'TOKEN_EXPIRED') {
@@ -83,6 +72,8 @@ const handleAuthError = async <T>(
     cookieManager.delete('accessToken');
     cookieManager.delete('refreshToken');
     router.replace('/login');
+
+    toast.error('인증 시간이 만료되어 로그인 페이지로 이동했어요.');
   }
 
   return {
@@ -99,16 +90,16 @@ const resolver = async <T>(
   options: RequestInit,
   response: Response,
 ): Promise<APIResponse<T>> => {
+  // 먼저 상태 코드 체크
+  if (response.status === 401) {
+    const json = (await response.json()) as APIResponse<T>;
+    return handleAuthError<T>(method, url, options, json);
+  }
+
   const json = (await response.json()) as APIResponse<T>;
 
   // 에러 핸들링
   if (!response.ok || !json.success) {
-    // 인증 에러일 경우
-    if (response.status === 401) {
-      console.log('ts');
-      return handleAuthError<T>(method, url, options, json);
-    }
-
     return {
       errorCode: 'UNKNOWN_ERROR',
       status: response.status,

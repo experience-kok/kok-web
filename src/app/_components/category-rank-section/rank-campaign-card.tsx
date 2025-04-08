@@ -39,7 +39,7 @@ export default function RankCampaignCard({ ranking }: Props) {
           <LikeButton />
         </div>
       </CardContent>
-      <CardFooter className="flex-1 flex-col items-start justify-center">
+      <CardFooter className="flex-1 flex-col items-start justify-start">
         <div className="scrollbar-hide mb-2 flex w-full items-center gap-2 overflow-x-auto">
           <CampaignTypeBadge campaignType="YOUTUBE" />
           <CampaignTypeBadge campaignType="NAVER_BLOG" />
