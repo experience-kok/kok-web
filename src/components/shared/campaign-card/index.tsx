@@ -33,10 +33,8 @@ export default function CampaignCard() {
       </CardContent>
       <CardFooter className="flex flex-col items-start px-0">
         <div className="scrollbar-hide mb-2 flex w-full items-center gap-2 overflow-x-auto">
-          <CampaignTypeBadge campaignType="YOUTUBE" />
-          <CampaignTypeBadge campaignType="NAVER_BLOG" />
           <CampaignTypeBadge campaignType="INSTAGRAM" />
-          <CampaignTypeBadge campaignType="OTHER" />
+          <CampaignTypeBadge campaignType="OTHER">방문</CampaignTypeBadge>
         </div>
         <Text className="line-clamp-2">
           [전국] 맘스터치 에드워드리 빅싸이순살 다리살? 아니 닭가슴살

@@ -20,7 +20,7 @@ export default function RankCampaignCard({ ranking }: Props) {
     'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080';
   return (
     <Card className="flex-row gap-2 border-none py-0 shadow-none">
-      <CardContent className="group relative h-[115px] w-[115px] cursor-pointer overflow-hidden rounded-lg p-0">
+      <CardContent className="group relative h-[115px] w-[115px] cursor-pointer overflow-hidden rounded-lg p-0 md:h-[135px] md:w-[135px]">
         <AspectRatio ratio={1 / 1} className="h-full w-full">
           <Image
             src={testurl}

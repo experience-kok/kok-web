@@ -1,3 +1,5 @@
+import { PropsWithChildren } from 'react';
+
 import { Badge } from 'components/ui/badge';
 
 const BADGE_TYPE = {
@@ -25,19 +27,19 @@ const BADGE_TYPE = {
 
 type BadgeTypeKey = keyof typeof BADGE_TYPE;
 
-interface Props {
+interface Props extends PropsWithChildren {
   campaignType: BadgeTypeKey;
 }
 
 /**
  * 캠페인 타입별 뱃지 컴포넌트
  */
-export default function CampaignTypeBadge({ campaignType }: Props) {
+export default function CampaignTypeBadge({ campaignType, children }: Props) {
   const { label, style } = BADGE_TYPE[campaignType];
 
   return (
     <Badge className={`hover:none font-semibold ${style}`} variant="secondary">
-      {label}
+      {children ?? label}
     </Badge>
   );
 }
