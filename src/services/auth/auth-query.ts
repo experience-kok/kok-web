@@ -26,12 +26,10 @@ export const useLogoutMutation = () => {
       setUser(null);
 
       // 2. 쿠키 제거
-      // cookieManager.delete('accessToken');
-      // cookieManager.delete('refreshToken');
+      cookieManager.delete('accessToken');
+      cookieManager.delete('refreshToken');
 
       // 3. 로컬스토리지 제거
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
       localStorage.removeItem('user');
 
       // 4. 메인 페이지로 라우팅
