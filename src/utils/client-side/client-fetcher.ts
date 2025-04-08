@@ -32,7 +32,9 @@ const refreshToken = async (): Promise<boolean> => {
 
     return false;
   } catch (e) {
-    console.error('Token refresh failed:', e);
+    router.replace('/login');
+
+    toast.error('인증이 만료되어 로그인 페이지로 이동했어요.');
     return false;
   }
 };
@@ -73,7 +75,7 @@ const handleAuthError = async <T>(
     cookieManager.delete('refreshToken');
     router.replace('/login');
 
-    toast.error('인증 시간이 만료되어 로그인 페이지로 이동했어요.');
+    toast.error('인증이 만료되어 로그인 페이지로 이동했어요.');
   }
 
   return {
