@@ -4,19 +4,20 @@ import { AspectRatio } from 'components/ui/aspect-ratio';
 import { Card, CardContent, CardFooter } from 'components/ui/card';
 import { Text } from 'components/ui/text';
 
+import ApplicatnsCount from './applicants-count';
+import CampaignTypeBadge from './campaign-type-badge';
 import LikeButton from './like-button';
 import ProgressBar from './progress-bar';
-import ShareButton from './share-button';
 
 /**
  * 캠페인 카드 컴포넌트
  */
 export default function CampaignCard() {
   const testurl =
-    'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080';
+    'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080';
   return (
     <Card className="gap-2 border-none py-0 shadow-none">
-      <CardContent className="group cursor-pointer overflow-hidden rounded-lg p-0">
+      <CardContent className="group relative cursor-pointer overflow-hidden rounded-lg p-0">
         <AspectRatio ratio={1 / 1}>
           <Image
             src={testurl}
@@ -26,20 +27,23 @@ export default function CampaignCard() {
             className="rounded-lg object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
           />
         </AspectRatio>
+        <div className="absolute right-2 bottom-2">
+          <LikeButton />
+        </div>
       </CardContent>
       <CardFooter className="flex flex-col items-start px-0">
-        {/* 아이콘 영역 */}
-        <div className="mb-1 flex items-center gap-2">
-          <LikeButton />
-          <ShareButton />
+        <div className="scrollbar-hide mb-2 flex w-full items-center gap-2 overflow-x-auto">
+          <CampaignTypeBadge campaignType="INSTAGRAM" />
+          <CampaignTypeBadge campaignType="OTHER">방문</CampaignTypeBadge>
         </div>
         <Text className="line-clamp-2">
           [전국] 맘스터치 에드워드리 빅싸이순살 다리살? 아니 닭가슴살
         </Text>
-        <Text size="sm" color="muted-foreground" weight="semibold" className="mb-4">
+        <Text size="sm" color="muted-foreground" weight="semibold" className="mb-2">
           치킨 메뉴 교환권
         </Text>
-        <ProgressBar currentApplicants={25} maxApplicants={10} />
+        <ApplicatnsCount maxApplicants={10} currentApplicants={25} />
+        {/* <ProgressBar currentApplicants={25} maxApplicants={10} /> */}
       </CardFooter>
     </Card>
   );

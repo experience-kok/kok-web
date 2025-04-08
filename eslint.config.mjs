@@ -20,6 +20,7 @@ const eslintConfig = [
       //     patterns: ['.*'],
       //   },
       // ],
+      'no-undef': 'off',
 
       // HTML 엔티티 사용 가능
       'react/no-unescaped-entities': 'off',
@@ -87,6 +88,11 @@ const eslintConfig = [
             },
             {
               pattern: 'utils/**', // utils 폴더
+              group: 'internal',
+              position: 'after',
+            },
+            {
+              pattern: 'public/**', // public 폴더
               group: 'internal',
               position: 'after',
             },

@@ -30,16 +30,16 @@ const NAV_MENU: Menu[] = [
 export default function HeaderNav() {
   return (
     <nav className="ml-16">
-      <ul className="flex items-center">
+      <ul className="hidden items-center md:flex">
         {NAV_MENU.map((menu, index) => (
-          <li className="group flex items-center" key={menu.title}>
-            <Link href={menu.url} className="group-hover:text-primary text-xl font-bold">
+          <li className="flex items-center" key={menu.title}>
+            <Link href={menu.url} className="hover:text-primary text-xl font-semibold">
               {menu.title}
             </Link>
 
             {/* 구분선 */}
             {index < NAV_MENU.length - 1 && (
-              <div className="mx-4 h-2 border-r border-gray-300"></div>
+              <div className="mx-4 h-2 border-r border-gray-200"></div>
             )}
           </li>
         ))}
