@@ -1,11 +1,20 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  env: {
+    NEXT_PUBLIC_KOK_BASE_URL: process.env.NEXT_PUBLIC_KOK_BASE_URL,
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ['images.unsplash.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+      },
+    ],
   },
   webpack: config => {
     config.module.rules.push({

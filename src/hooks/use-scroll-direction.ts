@@ -1,4 +1,3 @@
-// hooks/useScrollDirection.ts
 import { useEffect, useState } from 'react';
 
 type ScrollDirection = 'up' | 'down' | null;

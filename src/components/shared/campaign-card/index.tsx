@@ -4,6 +4,8 @@ import { AspectRatio } from 'components/ui/aspect-ratio';
 import { Card, CardContent, CardFooter } from 'components/ui/card';
 import { Text } from 'components/ui/text';
 
+import ApplicatnsCount from './applicants-count';
+import CampaignTypeBadge from './campaign-type-badge';
 import LikeButton from './like-button';
 import ProgressBar from './progress-bar';
 
@@ -30,13 +32,18 @@ export default function CampaignCard() {
         </div>
       </CardContent>
       <CardFooter className="flex flex-col items-start px-0">
+        <div className="scrollbar-hide mb-2 flex w-full items-center gap-2 overflow-x-auto">
+          <CampaignTypeBadge campaignType="INSTAGRAM" />
+          <CampaignTypeBadge campaignType="OTHER">방문</CampaignTypeBadge>
+        </div>
         <Text className="line-clamp-2">
           [전국] 맘스터치 에드워드리 빅싸이순살 다리살? 아니 닭가슴살
         </Text>
-        <Text size="sm" color="muted-foreground" weight="semibold" className="mb-4">
+        <Text size="sm" color="muted-foreground" weight="semibold" className="mb-2">
           치킨 메뉴 교환권
         </Text>
-        <ProgressBar currentApplicants={25} maxApplicants={10} />
+        <ApplicatnsCount maxApplicants={10} currentApplicants={25} />
+        {/* <ProgressBar currentApplicants={25} maxApplicants={10} /> */}
       </CardFooter>
     </Card>
   );

@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * 레이아웃 잡을 때 사용되는 패딩 래퍼
  * @param children 래핑할 자식 컴포넌트

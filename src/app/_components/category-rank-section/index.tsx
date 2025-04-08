@@ -80,34 +80,22 @@ export default function CategoryRankSection() {
 
       {/* 모바일 이상 사이즈에서 보일 컴포넌트 */}
       {/* 추후 데이터 요청 부분이 추가되면 윈도우 사이즈별로 데이터 요청을 다르게 해야할듯 */}
-      <div className="hidden md:flex">
-        <div>
-          <ul className="flex flex-col items-center gap-4">
-            {new Array(3).fill(0).map((_, index) => (
-              <li key={index}>
-                <RankCampaignCard ranking={index + 1} />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <ul className="flex flex-col items-center gap-4">
-            {new Array(3).fill(0).map((_, index) => (
-              <li key={index}>
-                <RankCampaignCard ranking={index + 1} />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="md:hidden lg:block">
-          <ul className="flex flex-col items-center gap-4">
-            {new Array(3).fill(0).map((_, index) => (
-              <li key={index}>
-                <RankCampaignCard ranking={index + 1} />
-              </li>
-            ))}
-          </ul>
-        </div>
+      <div className="hidden w-full md:flex">
+        <ul className="flex w-1/2 flex-col items-center justify-start gap-4">
+          {new Array(3).fill(0).map((_, index) => (
+            <li key={index} className="w-full">
+              <RankCampaignCard ranking={index + 1} />
+            </li>
+          ))}
+        </ul>
+
+        <ul className="flex w-1/2 flex-col items-center gap-4">
+          {new Array(3).fill(0).map((_, index) => (
+            <li key={index} className="w-full">
+              <RankCampaignCard ranking={index + 1} />
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );

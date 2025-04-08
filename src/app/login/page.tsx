@@ -19,22 +19,27 @@ export default function LoginPage() {
         </Text>
       </Link>
       <div className="flex w-full flex-col gap-2">
-        <Input placeholder="체험콕 회원 아이디" className="h-12" />
-        <Input placeholder="비밀번호 (8~12자, 영문+숫자+특수문자)" className="h-12" />
+        <Input placeholder="체험콕 회원 아이디" className="h-12" disabled />
+        <Input placeholder="비밀번호 (8~12자, 영문+숫자+특수문자)" className="h-12" disabled />
       </div>
 
       <div className="flex w-full flex-col items-center gap-2">
         <LoginButton />
         <div className="flex items-center gap-2">
-          <Text size="sm" color="muted-foreground">
-            아이디 찾기
-          </Text>
+          <Link href="/">
+            <Text size="sm" color="muted-foreground">
+              아이디 찾기
+            </Text>
+          </Link>
+
           <Text size="sm" color="muted-foreground">
             |
           </Text>
-          <Text size="sm" color="muted-foreground">
-            비밀번호 찾기
-          </Text>
+          <Link href="/">
+            <Text size="sm" color="muted-foreground">
+              비밀번호 찾기
+            </Text>
+          </Link>
         </div>
       </div>
 
