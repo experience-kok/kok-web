@@ -1,10 +1,12 @@
-// 유저
+// 유저 타입
 export interface User {
-  role: 'USER' | 'ADMIN';
-  profileImage: string;
+  id: number;
   email: string;
   nickname: string;
-  id: number;
+  profileImage: string;
+  phone: string | null;
+  age: string | null;
+  role: 'USER' | 'ADMIN';
 }
 
 // 로그인 응답

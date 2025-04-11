@@ -14,6 +14,7 @@ export default function TestPage() {
 
       if (response.success && response.data?.accessToken) {
         cookieManager.set('accessToken', response.data.accessToken);
+        cookieManager.set('refreshToken', response.data.refreshToken);
         return true;
       }
 

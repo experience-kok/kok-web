@@ -44,7 +44,7 @@ export default function FooterMenu() {
     {
       icon: <UserRound className="h-6 w-6" />,
       title: '마이',
-      url: '/login', // 추후 로그인 확인 후 로그인 or 마이페이지로 라우팅
+      url: '/mypage',
     },
   ];
 
