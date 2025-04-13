@@ -8,6 +8,8 @@ import { useAuth } from 'hooks/use-auth';
 
 import { ROLE } from 'types/auth';
 
+import MyCampaign from './_components/my-campaign';
+
 /**
  * 마이페이지
  */
@@ -35,23 +37,7 @@ export default function MyPage() {
 
       <SplitBox className="h-2" />
 
-      <section className="px-4 py-10 lg:px-16">
-        <Text as="h2" size="2xl" weight="bold" className="mb-4">
-          내 캠페인
-        </Text>
-        <div className="grid grid-cols-4 divide-x">
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="flex flex-col items-center gap-1" key={index}>
-              <Text size="2xl" weight="bold" color="primary">
-                0
-              </Text>
-              <Text size="lg" weight="semibold">
-                지원
-              </Text>
-            </div>
-          ))}
-        </div>
-      </section>
+      <MyCampaign />
 
       <SplitBox className="h-2" />
 
