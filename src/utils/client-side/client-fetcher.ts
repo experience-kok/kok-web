@@ -26,8 +26,8 @@ const refreshToken = async (): Promise<boolean> => {
     const response = await postRefresh();
 
     if (response.success && response.data?.accessToken) {
-      cookieManager.set('accessToken', response.data.accessToken);
-      cookieManager.set('refreshToken', response.data.refreshToken);
+      // cookieManager.set('accessToken', response.data.accessToken);
+      // cookieManager.set('refreshToken', response.data.refreshToken);
       return true;
     }
 
@@ -72,8 +72,8 @@ const handleAuthError = async <T>(
 
   // 리프레시 토큰이 유효하지 않거나 기타 인증 오류
   if (errorCode === 'INVALID_REFRESH_TOKEN' || errorCode === 'UNAUTHORIZED') {
-    cookieManager.delete('accessToken');
-    cookieManager.delete('refreshToken');
+    // cookieManager.delete('accessToken');
+    // cookieManager.delete('refreshToken');
     router.replace('/login');
 
     toast.error('인증이 만료되어 로그인 페이지로 이동했어요.');
@@ -133,6 +133,7 @@ const fetcher = async <T>(
     accessToken = cookieManager.get('accessToken');
   }
 
+  console.log(requestUrl);
   // 헤더 설정
   const headers: HeadersInit = {
     ...defaultOptions[method].headers,

@@ -1,3 +1,5 @@
+'use client';
+
 import { Text } from 'components/ui/text';
 
 /**
@@ -5,7 +7,7 @@ import { Text } from 'components/ui/text';
  */
 export default function MyCampaign() {
   return (
-    <section className="px-4 py-10 lg:px-16">
+    <section className="px-8 py-10">
       <Text as="h2" size="2xl" weight="bold" className="mb-4">
         내 캠페인
       </Text>
