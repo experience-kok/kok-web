@@ -11,5 +11,3 @@ export interface ErrorResponse {
   message: string;
   success: false;
 }
-
-export type APIResponse<T> = SuccessResponse<T> | ErrorResponse;

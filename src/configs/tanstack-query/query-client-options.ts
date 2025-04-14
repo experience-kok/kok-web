@@ -1,3 +1,7 @@
+import { toast } from 'sonner';
+
+import { ErrorResponse } from 'types/global';
+
 import {
   Query,
   QueryCache,
@@ -24,9 +28,15 @@ const queryClientOptions: QueryClientConfig = {
         defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
     },
   },
+
   queryCache: new QueryCache({
-    onError: (error, query) => {
-      console.log(error, query);
+    onError: error => {
+      // const err = error as ErrorResponse;
+      console.log(error);
+
+      toast.error(error.message, {
+        position: 'top-center',
+      });
     },
   }),
 };
