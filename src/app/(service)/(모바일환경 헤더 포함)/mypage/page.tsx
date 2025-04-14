@@ -20,21 +20,7 @@ export default function MyPage() {
 
       <SplitBox className="h-2" />
 
-      <section className="px-8 py-10">
-        <Text as="h2" size="2xl" weight="bold" className="mb-4">
-          등록된 SNS
-        </Text>
-      </section>
-
-      <MyProfile />
-
-      <SplitBox className="h-2" />
-
-      <MyCampaign />
-
-      <SplitBox className="h-2" />
-
-      <section className="px-8 py-10">
+      <section className="px-6 py-10">
         <Text as="h2" size="2xl" weight="bold" className="mb-4">
           등록된 SNS
         </Text>

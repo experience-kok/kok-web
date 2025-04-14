@@ -92,6 +92,11 @@ const eslintConfig = [
               position: 'after',
             },
             {
+              pattern: 'constants/**', // public 폴더
+              group: 'internal',
+              position: 'after',
+            },
+            {
               pattern: 'public/**', // public 폴더
               group: 'internal',
               position: 'after',

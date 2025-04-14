@@ -10,11 +10,11 @@ import { Text } from 'components/ui/text';
 export default function Home() {
   return (
     <>
-      <section className="md:px-4 md:py-10 lg:px-16">
+      <section className="md:px-6 md:py-10 lg:px-16">
         <MainBanner />
       </section>
 
-      <section className="px-4 py-10 lg:px-16">
+      <section className="px-6 py-10 lg:px-16">
         <Text as="h2" size="2xl" weight="bold" className="mb-4">
           인기 캠페인
         </Text>
@@ -23,7 +23,7 @@ export default function Home() {
 
       <SplitBox className="h-2" />
 
-      <section className="px-4 py-10 lg:px-16">
+      <section className="px-6 py-10 lg:px-16">
         <Text as="h2" size="2xl" weight="bold" className="mb-4">
           카테고리 랭킹
         </Text>
@@ -32,7 +32,7 @@ export default function Home() {
 
       <SplitBox className="h-2" />
 
-      <section className="px-4 py-10 lg:px-16">
+      <section className="px-6 py-10 lg:px-16">
         <Text as="h2" size="2xl" weight="bold" className="mb-4">
           브랜드관
         </Text>
@@ -41,7 +41,7 @@ export default function Home() {
 
       <SplitBox className="h-2" />
 
-      <section className="px-4 py-10 lg:px-16">
+      <section className="px-6 py-10 lg:px-16">
         <Text as="h2" size="2xl" weight="bold" className="mb-4">
           임시 영역
         </Text>
