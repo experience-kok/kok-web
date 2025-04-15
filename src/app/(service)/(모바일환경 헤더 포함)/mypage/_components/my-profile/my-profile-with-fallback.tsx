@@ -2,6 +2,8 @@
 
 import { ErrorBoundary, Suspense } from '@suspensive/react';
 
+import ErrorFallback from 'components/shared/error-fallback';
+
 import MyProfile from './my-profile';
 import MyProfileSkeleton from './my-profile-skeleton';
 
@@ -16,14 +18,7 @@ import MyProfileSkeleton from './my-profile-skeleton';
  */
 export default function MyProfileWithFallback() {
   return (
-    <ErrorBoundary
-      fallback={props => (
-        <>
-          <button onClick={props.reset}>Try again</button>
-          {props.error.message}
-        </>
-      )}
-    >
+    <ErrorBoundary fallback={ErrorFallback}>
       <Suspense fallback={<MyProfileSkeleton />}>
         <MyProfile />
       </Suspense>
