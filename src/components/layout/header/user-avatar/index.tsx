@@ -2,6 +2,7 @@
 
 import { LogOut, Settings, User, CreditCard, HelpCircle } from 'lucide-react';
 
+
 import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from 'components/ui/hover-card';
 
