@@ -14,9 +14,9 @@ const queryClientOptions: QueryClientConfig = {
     queries: {
       gcTime: 1000 * 60 * 1,
       staleTime: 1000 * 3 * 1,
-      retry: 0,
       refetchOnMount: false,
       refetchOnWindowFocus: false,
+      retry: 0,
     },
 
     mutations: {
