@@ -31,8 +31,16 @@ const queryClientOptions: QueryClientConfig = {
 
   queryCache: new QueryCache({
     onError: error => {
-      // const err = error as ErrorResponse;
-      console.log(error);
+      const err = error as unknown as ErrorResponse;
+
+      // 인증 만료 -> 로그인 페이지로 이동 필요
+      if (err.errorCode === 'UNAUTHORIZED') {
+        toast.error('인증 시간 만료', {
+          position: 'top-center',
+        });
+
+        return;
+      }
 
       toast.error(error.message, {
         position: 'top-center',
