@@ -8,6 +8,8 @@ import { postRefresh } from 'services/auth/auth-api';
 
 import { ErrorResponse } from 'types/global';
 
+import { errorCode as constantsErrorCode } from 'constants/error-code';
+
 type Method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
 const defaultOptions: Record<Method, RequestInit> = {
@@ -82,14 +84,25 @@ const fetcher = async <T>(
       const errorCode = json.errorCode ?? '';
       const status = json.status ?? response.status;
 
-      if ((status === 401 || errorCode === 'TOKEN_EXPIRED') && !isRetry) {
-        const refreshed = await refreshToken();
-        if (refreshed) {
-          // ✅ refreshToken 성공 시, 재시도
-          console.log('재시도');
-          return fetcher<T>(method, url, options, true);
-        } else {
+      if (status === 401 && !isRetry) {
+        // 토큰 만료
+        if (errorCode === constantsErrorCode.TOKEN_EXPIRED) {
+          const refreshed = await refreshToken();
+
+          // 토큰 재발급 성공시 기존 요청 재요청
+          if (refreshed) {
+            return fetcher<T>(method, url, options, true);
+          } else {
+            router.replace('/login');
+          }
+        }
+        // 인증 오류 -> 로그인 페이지로 이동
+        else if (
+          errorCode === constantsErrorCode.UNAUTHORIZED ||
+          errorCode === constantsErrorCode.TOKEN_REFRESH_ERROR
+        ) {
           router.replace('/login');
+          console.log('인증오류');
         }
       }
 

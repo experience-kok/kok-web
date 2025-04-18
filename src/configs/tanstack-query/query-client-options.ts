@@ -2,6 +2,8 @@ import { toast } from 'sonner';
 
 import { ErrorResponse } from 'types/global';
 
+import { errorCode } from 'constants/error-code';
+
 import {
   Query,
   QueryCache,
@@ -34,8 +36,11 @@ const queryClientOptions: QueryClientConfig = {
       const err = error as unknown as ErrorResponse;
 
       // 인증 만료 -> 로그인 페이지로 이동 필요
-      if (err.errorCode === 'UNAUTHORIZED') {
-        toast.error('인증 시간 만료', {
+      if (
+        err.errorCode === errorCode.UNAUTHORIZED ||
+        err.errorCode === errorCode.TOKEN_REFRESH_ERROR
+      ) {
+        toast.error('인증 오류가 발생했어요.', {
           position: 'top-center',
         });
 

@@ -12,15 +12,11 @@ export default function TestPage() {
     try {
       const response = await postRefresh();
 
-      if (response.success && response.data?.accessToken) {
-        cookieManager.set('accessToken', response.data.accessToken);
-        cookieManager.set('refreshToken', response.data.refreshToken);
-        return true;
-      }
+      cookieManager.set('accessToken', response.accessToken);
+      cookieManager.set('refreshToken', response.refreshToken);
 
-      return false;
-    } catch (e) {
-      console.error('Token refresh failed:', e);
+      return true;
+    } catch {
       return false;
     }
   };
