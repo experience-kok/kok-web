@@ -47,6 +47,8 @@ const queryClientOptions: QueryClientConfig = {
         return;
       }
 
+      // 인증 외 오류 -> 서버에서 전달된 에러 메시지 출력
+      // !TODO 추가로 에러 별 액션이 필요할수도 있음
       toast.error(error.message, {
         position: 'top-center',
       });
