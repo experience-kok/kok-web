@@ -1,5 +1,6 @@
 import { useSetAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 import { cookieManager } from 'libs/cookie-manager';
 
@@ -29,11 +30,16 @@ export const useLogoutMutation = () => {
       cookieManager.delete('accessToken');
       cookieManager.delete('refreshToken');
 
-      // 3. 로컬스토리지 제거
+      // 3. 로컬스토리지 제거 -> 조타이로 삭제 필요
       localStorage.removeItem('user');
 
       // 4. 메인 페이지로 라우팅
       router.push('/');
+
+      // 로그아웃 토스트 메시지 출력
+      toast.info('로그아웃이 완료되었어요', {
+        position: 'top-center',
+      });
     },
   });
 };

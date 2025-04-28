@@ -25,7 +25,7 @@ export default function UserAvatar() {
     <HoverCard openDelay={100} closeDelay={100}>
       <HoverCardTrigger>
         <Avatar className="cursor-pointer">
-          <AvatarImage src={auth.user?.profileImage} />
+          <AvatarImage src={auth.user?.profileImage ?? undefined} />
           <AvatarFallback>{auth.user?.nickname ?? 'U'}</AvatarFallback>
         </Avatar>
       </HoverCardTrigger>
