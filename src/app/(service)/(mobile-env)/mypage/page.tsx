@@ -1,5 +1,3 @@
-'use client';
-
 import SplitBox from 'components/ui/split-box';
 import { Text } from 'components/ui/text';
 
