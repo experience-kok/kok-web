@@ -19,7 +19,7 @@ import MyProfileSkeleton from './my-profile-skeleton';
 export default function MyProfileWithFallback() {
   return (
     <ErrorBoundary fallback={ErrorFallback}>
-      <Suspense fallback={<MyProfileSkeleton />}>
+      <Suspense clientOnly fallback={<MyProfileSkeleton />}>
         <MyProfile />
       </Suspense>
     </ErrorBoundary>
