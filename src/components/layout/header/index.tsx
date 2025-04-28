@@ -18,6 +18,7 @@ import UserAvatar from './user-avatar';
  */
 export default function Header() {
   const auth = useAuth();
+
   return (
     <>
       <header className="flex h-14 w-full md:h-16 md:border-b-[1px] md:border-gray-200">
