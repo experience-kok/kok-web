@@ -1,0 +1,97 @@
+{
+  "ignorePatterns": ["node_modules/"],
+  "extends": ["next", "next/core-web-vitals", "next/typescript", "eslint:recommended", "prettier"],
+  "plugins": ["import"],
+  "rules": {
+    "no-undef": "off",
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-explicit-any": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "unknown"],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "next",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "next/font/google",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "configs/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "hooks/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "libs/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "services/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "stores/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "types/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "utils/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "constants/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "public/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@tanstack/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "embla-carousel-autoplay",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["@tanstack", "embla-carousel-autoplay"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
+}

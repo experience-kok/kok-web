@@ -5,10 +5,7 @@ import { User } from 'types/auth';
 
 export const userAtom = atomWithStorage<User | null>('user', null);
 
-export const isLoggedInAtom = atom(() => {
-  if (typeof document === 'undefined') return false;
-
-  const cookies = document.cookie.split(';');
-  const accessTokenCookie = cookies.find(cookie => cookie.trim().startsWith('accessToken='));
-  return !!accessTokenCookie;
+export const isLoggedInAtom = atom(get => {
+  const user = get(userAtom);
+  return !!user; // user 객체가 있으면 로그인 상태
 });

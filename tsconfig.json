@@ -28,7 +28,8 @@
       "libs/*": ["libs/*"],
       "types/*": ["types/*"],
       "utils/*": ["utils/*"],
-      "public/*": ["../public/*"]
+      "public/*": ["../public/*"],
+      "constants/*": ["constants/*"]
     }
   },
   "include": [

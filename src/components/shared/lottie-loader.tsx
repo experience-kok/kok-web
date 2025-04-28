@@ -12,7 +12,7 @@ interface LottieLoaderProps extends React.HTMLAttributes<HTMLDivElement> {
  */
 export default function LottieLoader({ animationData, ...props }: LottieLoaderProps) {
   const animationContainer = useRef<HTMLDivElement>(null);
-  const [animationInstance, setAnimationInstance] = useState<AnimationItem | null>(null);
+  const [, setAnimationInstance] = useState<AnimationItem | null>(null);
 
   useEffect(() => {
     if (!animationContainer.current) return;
