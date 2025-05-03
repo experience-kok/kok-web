@@ -8,13 +8,13 @@ import { Text } from 'components/ui/text';
 export default function MyCampaign() {
   return (
     <section className="px-6 py-10">
-      <Text as="h2" size="2xl" weight="bold" className="mb-4">
+      <Text as="h2" size="xl" weight="bold" className="mb-4">
         내 캠페인
       </Text>
       <div className="grid grid-cols-4 divide-x">
         {new Array(4).fill(0).map((_, index) => (
           <div className="flex flex-col items-center gap-1" key={index}>
-            <Text size="2xl" weight="bold" color="primary">
+            <Text size="xl" weight="bold" color="primary">
               0
             </Text>
             <Text size="lg" weight="semibold">

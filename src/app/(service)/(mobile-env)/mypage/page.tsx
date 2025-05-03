@@ -5,6 +5,7 @@ import { Text } from 'components/ui/text';
 
 import MyCampaign from './_components/my-campaign';
 import MyProfileWithFallback from './_components/my-profile/my-profile-with-fallback';
+import Sns from './_components/sns';
 
 /**
  * 마이페이지
@@ -20,11 +21,7 @@ export default function MyPage() {
 
       <SplitBox className="h-2" />
 
-      <section className="px-6 py-10">
-        <Text as="h2" size="2xl" weight="bold" className="mb-4">
-          등록된 SNS
-        </Text>
-      </section>
+      <Sns />
 
       <SplitBox className="h-2" />
 
