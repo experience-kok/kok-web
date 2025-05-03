@@ -21,7 +21,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="flex h-14 w-full md:h-16 md:border-b-[1px] md:border-gray-200">
+      <header className="flex h-14 w-full bg-white md:h-16 md:border-b-[1px] md:border-gray-200">
         <PaddingWrapper>
           <div className="flex h-full w-full items-center">
             <div className="flex h-full w-full items-center">
