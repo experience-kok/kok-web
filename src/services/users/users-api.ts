@@ -10,3 +10,12 @@ export const getProfile = () => {
 
   return response;
 };
+
+/**
+ * 유저 정보 수정
+ */
+export const putProfile = () => {
+  const response = clientFetcher.put<null>(`/users/profile`, {});
+
+  return response;
+};

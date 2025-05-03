@@ -42,7 +42,7 @@ export default function UserAvatar() {
         <div className="flex flex-col gap-1">
           <UserMenuItem
             icon={<User size={16} />}
-            label="내 프로필"
+            label="내 정보"
             onClick={handleRouteToProfilePage}
           />
           <UserMenuItem icon={<Settings size={16} />} label="설정" />
