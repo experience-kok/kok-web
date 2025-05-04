@@ -1,5 +1,8 @@
 'use client';
 
+import { Camera } from 'lucide-react';
+
+import Tooltip from 'components/shared/tooltip';
 import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar';
 import { Text } from 'components/ui/text';
 
@@ -14,11 +17,22 @@ export default function MyProfile() {
   return (
     <section className="px-6 py-10">
       <div className="flex items-center gap-5">
-        <Avatar className="h-20 w-20">
-          {/* 프로필 이미지가 미지정일 경우 사용할 서비스 이미지 필요 */}
-          <AvatarImage src={userData.user?.profileImage ?? undefined} />
-          <AvatarFallback>{userData.user?.nickname ?? ''}</AvatarFallback>
-        </Avatar>
+        <Tooltip content="프로필 이미지 변경">
+          <div className="group relative cursor-pointer">
+            <Avatar className="h-20 w-20">
+              <AvatarImage src={userData.user?.profileImage ?? undefined} />
+              <AvatarFallback>{userData.user?.nickname ?? ''}</AvatarFallback>
+            </Avatar>
+
+            {/* 어두운 오버레이 */}
+            <div className="absolute inset-0 rounded-full bg-black/40 opacity-0 transition-opacity group-hover:opacity-100" />
+
+            <div className="absolute right-0 bottom-0 flex h-8 w-8 items-center justify-center rounded-full border border-white bg-white">
+              <Camera size={20} className="fill-muted-foreground text-white" />
+            </div>
+          </div>
+        </Tooltip>
+
         <div className="flex flex-col items-start">
           <Text weight="bold" size="2xl">
             {userData.user?.nickname}
