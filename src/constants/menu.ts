@@ -13,6 +13,10 @@ export const routeMenu: Menu[] = [
     title: '내 정보',
     url: '/mypage',
   },
+  {
+    title: '내 정보 수정',
+    url: '/mypage/edit',
+  },
 ];
 
 // 서브 메뉴 목록

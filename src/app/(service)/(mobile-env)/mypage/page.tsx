@@ -8,7 +8,7 @@ import MyProfileWithFallback from './_components/my-profile/my-profile-with-fall
 import Sns from './_components/sns';
 
 /**
- * 마이페이지
+ * 내 정보 페이지
  */
 export default function MyPage() {
   return (

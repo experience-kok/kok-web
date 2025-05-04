@@ -1,6 +1,7 @@
 'use client';
 
 import { Camera } from 'lucide-react';
+import Link from 'next/link';
 
 import Tooltip from 'components/shared/tooltip';
 import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar';
@@ -41,9 +42,16 @@ export default function MyProfile() {
           <Text weight="bold" size="2xl">
             {userData.user?.nickname}
           </Text>
-          <Text weight="semibold" size="lg">
-            {userData.user?.email}
-          </Text>
+          <Link href="/mypage/edit">
+            <Text
+              weight="semibold"
+              size="md"
+              color="muted-foreground"
+              className="cursor-pointer underline"
+            >
+              내 정보 수정
+            </Text>
+          </Link>
         </div>
       </div>
     </section>
