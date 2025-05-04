@@ -9,7 +9,6 @@ export async function POST(request: NextRequest) {
 
   // 환경 변수에서 base URL 가져오기
   const kokBaseUrl = process.env.NEXT_PUBLIC_KOK_BASE_URL;
-  console.log(kokBaseUrl);
 
   const response = await fetch(`${kokBaseUrl}/auth/kakao`, {
     method: 'POST',

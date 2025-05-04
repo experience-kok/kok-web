@@ -9,3 +9,7 @@ export interface GetProfileResponse {
 export interface PutProfileResponse {
   user: User;
 }
+
+export interface PatchProfileImageRequest {
+  profileImage: string;
+}
