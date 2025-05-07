@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getAccessToken } from 'utils/server-side/get-access-token';
 import { getRequestUrl } from 'utils/server-side/get-request-url';
 
+// 프로필 이미지 수정
 export async function PATCH(request: NextRequest) {
   const body = await request.json();
   const { profileImage } = body;

@@ -16,7 +16,7 @@ import MyProfileSkeleton from './my-profile-skeleton';
  *
  * 이 컴포넌트는 서버 컴포넌트에서 안전하게 사용할 수 있도록 분리
  */
-export default function MyProfileWithFallback() {
+export default function MyProfileContainer() {
   return (
     <ErrorBoundary fallback={ErrorFallback}>
       <Suspense clientOnly fallback={<MyProfileSkeleton />}>

@@ -4,7 +4,7 @@ import SplitBox from 'components/ui/split-box';
 import { Text } from 'components/ui/text';
 
 import MyCampaign from './_components/my-campaign';
-import MyProfileWithFallback from './_components/my-profile/my-profile-with-fallback';
+import MyProfileContainer from './_components/my-profile/my-profile-container';
 import Sns from './_components/sns';
 
 /**
@@ -13,7 +13,7 @@ import Sns from './_components/sns';
 export default function MyPage() {
   return (
     <>
-      <MyProfileWithFallback />
+      <MyProfileContainer />
 
       <SplitBox className="h-2" />
 

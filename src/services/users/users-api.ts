@@ -1,9 +1,9 @@
 import clientFetcher from 'utils/client-side/client-fetcher';
 
-import { GetProfileResponse, PatchProfileImageRequest } from './users-types';
+import { GetProfileResponse, PatchProfileImageRequest, PutProfileRequest } from './users-types';
 
 /**
- * 유저 정보 조회
+ * 내 정보 조회
  */
 export const getProfile = () => {
   const response = clientFetcher.get<GetProfileResponse>(`/users/profile`);
@@ -12,10 +12,12 @@ export const getProfile = () => {
 };
 
 /**
- * 유저 정보 수정
+ * 내 정보 수정
  */
-export const putProfile = () => {
-  const response = clientFetcher.put<null>(`/users/profile`, {});
+export const putProfile = (requestBody: PutProfileRequest) => {
+  const response = clientFetcher.put<null>(`/users/profile`, {
+    ...requestBody,
+  });
 
   return response;
 };
