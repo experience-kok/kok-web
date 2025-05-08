@@ -8,7 +8,7 @@ export interface GetProfileResponse {
 // 내 정보 수정 요청
 export interface PutProfileRequest {
   nickname: string;
-  profileImage: string;
+  profileImage: string | null;
   phone: string;
   gender: Gender;
   age: number;

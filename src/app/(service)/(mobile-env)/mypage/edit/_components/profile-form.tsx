@@ -1,5 +1,6 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 
 import { Button } from 'components/ui/button';
@@ -7,9 +8,9 @@ import { Input } from 'components/ui/input';
 import { Label } from 'components/ui/label';
 import { RadioGroup, RadioGroupItem } from 'components/ui/radio-group';
 import { Text } from 'components/ui/text';
+import { editFormSchema, type EditForm } from 'schemas/user-profile-edit-schema';
 
 import { Gender } from 'types/auth';
-import { EditForm } from 'types/auth';
 
 interface Props {
   defaultValues: {
@@ -31,12 +32,8 @@ export default function ProfileForm({ defaultValues, onSubmit }: Props) {
     control,
     formState: { errors },
   } = useForm<EditForm>({
-    defaultValues: {
-      nickname: defaultValues.nickname,
-      phone: defaultValues.phone,
-      gender: defaultValues.gender,
-      age: defaultValues.age,
-    },
+    resolver: zodResolver(editFormSchema),
+    defaultValues,
   });
 
   return (
@@ -53,15 +50,19 @@ export default function ProfileForm({ defaultValues, onSubmit }: Props) {
           전화번호 <span className="text-primary">*</span>
         </Label>
         <Input className="h-12" {...register('phone', { required: true })} />
-        {errors.nickname && <Text color="red">숫자만 입력해주세요.</Text>}
+        {errors.phone && <Text color="red">{errors.phone.message}</Text>}
       </div>
 
       <div className="grid w-full items-center gap-1.5">
         <Label className="text-md font-bold">
           나이 <span className="text-primary">*</span>
         </Label>
-        <Input className="h-12" {...register('age', { required: true })} />
-        {errors.nickname && <Text color="red">나이를 입력해주세요.</Text>}
+        <Input
+          type="number"
+          className="h-12"
+          {...register('age', { required: true, valueAsNumber: true })}
+        />
+        {errors.age && <Text color="red">{errors.age.message}</Text>}
       </div>
 
       <div className="grid w-full items-center gap-1.5">
@@ -93,7 +94,7 @@ export default function ProfileForm({ defaultValues, onSubmit }: Props) {
             </RadioGroup>
           )}
         />
-        {errors.gender && <Text color="red">성별을 선택해주세요.</Text>}
+        {errors.gender && <Text color="red">{errors.gender.message}</Text>}
       </div>
 
       <Button className="w-full" size="lg" type="submit">

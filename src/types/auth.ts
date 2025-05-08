@@ -33,11 +33,3 @@ export interface AuthResponse {
   accessToken: string;
   loginType: 'registration' | 'login';
 }
-
-// 유저 정보 수정 폼 타입
-export type EditForm = {
-  nickname: string;
-  phone: string;
-  gender: Gender;
-  age: number;
-};
