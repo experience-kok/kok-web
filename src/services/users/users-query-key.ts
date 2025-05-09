@@ -4,7 +4,7 @@ import { getProfile } from './users-api';
 
 // users 쿼리키
 export const usersQueryKeys = createQueryKeys('users', {
-  my: () => ({
+  profile: () => ({
     queryKey: ['my'],
     queryFn: () => getProfile(),
   }),

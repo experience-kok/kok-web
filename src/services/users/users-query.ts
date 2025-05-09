@@ -7,6 +7,6 @@ import { usersQueryKeys } from './users-query-key';
  */
 export const useGetProfileQuery = () => {
   return useSuspenseQuery({
-    ...usersQueryKeys.my(),
+    ...usersQueryKeys.profile(),
   });
 };
