@@ -23,6 +23,12 @@ export const useLogoutMutation = () => {
   return useMutation({
     mutationFn: postLogout,
     onSuccess: () => {
+      // 로그아웃 토스트 메시지 출력
+      toast.info('로그아웃이 완료되었어요', {
+        position: 'top-center',
+      });
+    },
+    onSettled: () => {
       // 1. jotai 상태 초기화
       setUser(null);
 
@@ -35,11 +41,6 @@ export const useLogoutMutation = () => {
 
       // 4. 메인 페이지로 라우팅
       router.push('/');
-
-      // 로그아웃 토스트 메시지 출력
-      toast.info('로그아웃이 완료되었어요', {
-        position: 'top-center',
-      });
     },
   });
 };

@@ -22,7 +22,7 @@ export interface User {
   profileImage: string | null;
   phone: string | null;
   gender: Gender;
-  age: string | null;
+  age: number | null;
   role: Role;
 }
 

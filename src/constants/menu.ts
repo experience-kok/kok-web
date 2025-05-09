@@ -13,19 +13,17 @@ export const routeMenu: Menu[] = [
     title: '내 정보',
     url: '/mypage',
   },
+  {
+    title: '내 정보 수정',
+    url: '/mypage/edit',
+  },
 ];
 
 // 서브 메뉴 목록
 export const subMenu: Menu[] = [
   { title: '홈', url: '/' },
-  { title: '메디힐', url: '/mediheal' },
-  { title: '오특', url: '/special' },
-  { title: '랭킹', url: '/ranking' },
-  { title: '매거진', url: '/magazine' },
-  { title: 'LUXE EDIT', url: '/luxe-edit' },
-  { title: '기획전', url: '/planning' },
-  { title: '이벤트', url: '/event' },
-  { title: 'LUXE EDIT', url: '/luxe-edit' },
-  { title: '기획전', url: '/planning' },
-  { title: '이벤트', url: '/event' },
+  { title: '메뉴1', url: '/1' },
+  { title: '메뉴2', url: '/2' },
+  { title: '메뉴3', url: '/3' },
+  { title: '메뉴4', url: '/4' },
 ];

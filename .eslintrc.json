@@ -70,6 +70,11 @@
             "position": "after"
           },
           {
+            "pattern": "schemas/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
             "pattern": "public/**",
             "group": "internal",
             "position": "after"

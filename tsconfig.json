@@ -29,7 +29,8 @@
       "types/*": ["types/*"],
       "utils/*": ["utils/*"],
       "public/*": ["../public/*"],
-      "constants/*": ["constants/*"]
+      "constants/*": ["constants/*"],
+      "schemas/*": ["schemas/*"]
     }
   },
   "include": [
