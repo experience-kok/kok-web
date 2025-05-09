@@ -11,7 +11,7 @@ export default function MyProfileEditPage() {
   return (
     <>
       <ErrorBoundary fallback={ErrorFallback}>
-        <Suspense>
+        <Suspense clientOnly>
           <MyProfileEditContainer />
         </Suspense>
       </ErrorBoundary>
