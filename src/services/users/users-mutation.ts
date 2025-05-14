@@ -1,7 +1,10 @@
+import { useSetAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 import getQueryClient from 'configs/tanstack-query/get-query-client';
+
+import { userAtom } from 'stores/user-atoms';
 
 import { useMutation } from '@tanstack/react-query';
 
@@ -13,11 +16,13 @@ import { usersQueryKeys } from './users-query-key';
  */
 export const usePutProfileMutation = () => {
   const queryClient = getQueryClient();
+  const setUser = useSetAtom(userAtom);
   const router = useRouter();
 
   return useMutation({
     mutationFn: putProfile,
-    onSuccess: () => {
+    onSuccess: userData => {
+      setUser(userData);
       toast.info('프로필 정보가 변경되었어요', {
         position: 'top-center',
       });
