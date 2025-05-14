@@ -45,6 +45,8 @@ export default function MyPage() {
           <ChevronRight width={24} height={24} />
         </div>
       </section>
+
+      <SplitBox className="h-2" />
     </>
   );
 }
