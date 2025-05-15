@@ -1,10 +1,14 @@
 'use client';
 
+import dynamic from 'next/dynamic';
+
 import LoadingLottie from 'public/lotties/loading.json';
 
 import { useIsMutating } from '@tanstack/react-query';
 
-import LottieLoader from './lottie-loader';
+const LottieLoader = dynamic(() => import('components/shared/lottie-loader'), {
+  ssr: false,
+});
 
 export default function GlobalLoading() {
   const isMutating = useIsMutating();
