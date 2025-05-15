@@ -5,6 +5,7 @@ import {
   PatchProfileImageRequest,
   PatchProfileImageResponse,
   PutProfileRequest,
+  PutProfileResponse,
 } from './users-types';
 
 /**
@@ -20,7 +21,7 @@ export const getProfile = () => {
  * 내 정보 수정
  */
 export const putProfile = (requestBody: PutProfileRequest) => {
-  const response = clientFetcher.put<null>(`/users/profile`, {
+  const response = clientFetcher.put<PutProfileResponse>(`/users/profile`, {
     ...requestBody,
   });
 

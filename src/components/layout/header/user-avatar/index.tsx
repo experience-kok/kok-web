@@ -35,7 +35,7 @@ export default function UserAvatar() {
       <HoverCardTrigger>
         <Avatar className="cursor-pointer">
           <AvatarImage src={auth.user?.profileImage ?? undefined} />
-          <AvatarFallback>{auth.user?.nickname ?? 'U'}</AvatarFallback>
+          <AvatarFallback>체험콕</AvatarFallback>
         </Avatar>
       </HoverCardTrigger>
       <HoverCardContent className="w-44 p-2">

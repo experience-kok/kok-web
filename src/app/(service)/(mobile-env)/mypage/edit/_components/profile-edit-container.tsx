@@ -2,8 +2,12 @@
 
 import { useState } from 'react';
 
+import { toast } from 'sonner';
+
 import { EditForm } from 'schemas/user-profile-edit-schema';
 
+import { postPresignedUrl } from 'services/image/image-api';
+import { ProfileImageExtension } from 'services/image/image-types';
 import { usePutProfileMutation } from 'services/users/users-mutation';
 import { useGetProfileQuery } from 'services/users/users-query';
 
@@ -17,29 +21,69 @@ export default function MyProfileEditContainer() {
   const { data: userData } = useGetProfileQuery();
   const { mutate: userEditMutate } = usePutProfileMutation();
 
-  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   // 이미지 변경 함수
-  const handleImageChange = (newImageUrl: string) => {
-    setProfileImage(newImageUrl);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (!file) return;
+
+    if (!/\.(jpg|jpeg|png)$/i.test(file.name)) {
+      alert('JPG 또는 PNG 파일만 업로드할 수 있어요.');
+      return;
+    }
+
+    const previewUrl = URL.createObjectURL(file);
+    setPreview(previewUrl);
+    setSelectedFile(file);
   };
 
-  // 요청
-  const handleSubmit = (formData: EditForm) => {
-    const finalData = {
-      ...formData,
-      profileImage: profileImage ?? userData.user.profileImage,
-    };
+  // 유저 정보 수정 요청
+  const handleSubmit = async (formData: EditForm) => {
+    if (!selectedFile) {
+      // 이미지 변경이 없을 경우 기존 프로필 이미지 포함
+      const finalData = {
+        ...formData,
+        profileImage: userData.user.profileImage,
+      };
+      userEditMutate(finalData);
+      return;
+    }
 
-    userEditMutate(finalData);
+    const fileExtension = selectedFile.name.split('.').pop() as ProfileImageExtension;
+    const { presignedUrl } = await postPresignedUrl(fileExtension);
+    const imageUrl = presignedUrl.split('?')[0];
+
+    try {
+      // await new Promise(resolve => setTimeout(resolve, 10000));
+      const response = await fetch(imageUrl, {
+        method: 'PUT',
+        body: selectedFile,
+      });
+
+      if (response.ok) {
+        const finalData = {
+          ...formData,
+          profileImage: imageUrl,
+        };
+        userEditMutate(finalData);
+        return;
+      }
+    } catch (error) {
+      toast.error('프로필 이미지 변경을 실패했어요.', {
+        position: 'top-center',
+      });
+    }
   };
 
   return (
     <>
       <ProfileAvatar
-        profileImage={profileImage ?? userData.user.profileImage}
-        fallbackText={userData.user.nickname}
-        onImageChange={handleImageChange}
+        preview={preview}
+        onFileChange={handleFileChange}
+        profileImage={userData.user.profileImage}
       />
       <ProfileForm
         defaultValues={{

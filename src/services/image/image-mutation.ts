@@ -7,9 +7,18 @@ import { useMutation } from '@tanstack/react-query';
 import { postPresignedUrl } from './image-api';
 
 /**
- * 업로드 이미지 생성 뮤테이션
+ * presigned-url 발급 뮤테이션
  */
-export const usePostPresignedUrlMutation = (profileImageFile: File | null) => {
+export const usePostPresignedUrlMutation = () => {
+  return useMutation({
+    mutationFn: postPresignedUrl,
+  });
+};
+
+/**
+ * 프로필 이미지 업로드 뮤테이션
+ */
+export const usePatchProfileImageWithPresignedUrlMutation = (profileImageFile: File | null) => {
   const { mutate: handlePatchProfileImage } = usePatchProfileImageMutation();
 
   return useMutation({
@@ -31,7 +40,7 @@ export const usePostPresignedUrlMutation = (profileImageFile: File | null) => {
           });
         }
       } catch (error) {
-        toast.error('프로필 이미지 변경을 실패했어요', {
+        toast.error('프로필 이미지 변경을 실패했어요.', {
           position: 'top-center',
         });
       }

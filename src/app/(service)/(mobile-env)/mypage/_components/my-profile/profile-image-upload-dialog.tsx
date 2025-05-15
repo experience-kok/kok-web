@@ -3,6 +3,8 @@
 import { ReactNode } from 'react';
 import { useState } from 'react';
 
+import { Camera } from 'lucide-react';
+
 import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar';
 import { Button } from 'components/ui/button';
 import {
@@ -13,12 +15,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from 'components/ui/dialog';
-import { Input } from 'components/ui/input';
 import { Text } from 'components/ui/text';
 
 import getQueryClient from 'configs/tanstack-query/get-query-client';
 
-import { usePostPresignedUrlMutation } from 'services/image/image-mutation';
+import { usePatchProfileImageWithPresignedUrlMutation } from 'services/image/image-mutation';
 import { ProfileImageExtension } from 'services/image/image-types';
 import { usersQueryKeys } from 'services/users/users-query-key';
 
@@ -41,7 +42,8 @@ export default function ProfileImageUploadDialog({ children }: Props) {
     | { user: User }
     | undefined;
 
-  const { mutate: handlePostPresignedUrlMutation } = usePostPresignedUrlMutation(selectedFile);
+  const { mutate: handlePostPresignedUrlMutation } =
+    usePatchProfileImageWithPresignedUrlMutation(selectedFile);
 
   // 이미지 변경 함수
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,6 +79,12 @@ export default function ProfileImageUploadDialog({ children }: Props) {
     handlePostPresignedUrlMutation(fileExtension);
   };
 
+  const handleAvatarClick = () => {
+    // input 요소를 클릭하여 파일 선택 다이얼로그 열기
+    const fileInput = document.getElementById('profile-image-input');
+    fileInput?.click();
+  };
+
   return (
     <Dialog onOpenChange={handleCloseDialog}>
       <DialogTrigger>{children}</DialogTrigger>
@@ -86,28 +94,40 @@ export default function ProfileImageUploadDialog({ children }: Props) {
           <DialogTitle>프로필 이미지 업로드</DialogTitle>
         </DialogHeader>
 
-        <div className="flex flex-col items-center">
-          <Avatar className="mb-4 h-20 w-20">
-            {preview ? (
-              <AvatarImage src={preview} />
-            ) : userData?.user?.profileImage ? (
-              <AvatarImage src={userData?.user?.profileImage} />
-            ) : null}
-            <AvatarFallback>{userData?.user?.nickname ?? ''}</AvatarFallback>
-          </Avatar>
+        <section className="flex flex-col items-center justify-center">
+          <div className="group relative">
+            <div className="relative cursor-pointer" onClick={handleAvatarClick}>
+              <Avatar className="h-20 w-20">
+                {preview ? (
+                  <AvatarImage src={preview} />
+                ) : userData?.user?.profileImage ? (
+                  <AvatarImage src={userData?.user?.profileImage} />
+                ) : null}
+                <AvatarFallback>체험콕</AvatarFallback>
+              </Avatar>
 
-          <div className="mb-2 grid w-full max-w-sm items-center gap-1.5">
-            <Input
-              onChange={handleFileChange}
-              id="profileImage"
+              {/* 어두운 오버레이 */}
+              <div className="absolute inset-0 rounded-full bg-black/40 opacity-0 transition-opacity group-hover:opacity-100" />
+
+              {/* 카메라 아이콘 */}
+              <div className="absolute right-0 bottom-0 flex h-8 w-8 items-center justify-center rounded-full border border-white bg-white">
+                <Camera size={20} className="fill-muted-foreground text-white" />
+              </div>
+            </div>
+
+            {/* 숨겨진 파일 입력 */}
+            <input
+              id="profile-image-input"
               type="file"
               accept="image/png, image/jpeg, image/jpg"
+              onChange={handleFileChange}
+              className="hidden"
             />
           </div>
-          <Text size={'sm'} color="red">
+          <Text size={'sm'} color="red" className="mt-2">
             JPG 또는 PNG 파일만 업로드할 수 있어요.
           </Text>
-        </div>
+        </section>
 
         <DialogClose asChild>
           <Button onClick={handleSubmit} disabled={!selectedFile}>
