@@ -25,7 +25,7 @@ export default function MyProfile() {
             <div className="group relative cursor-pointer">
               <Avatar className="h-20 w-20">
                 <AvatarImage src={userData.user?.profileImage ?? undefined} />
-                <AvatarFallback>{userData.user?.nickname ?? ''}</AvatarFallback>
+                <AvatarFallback>체험콕</AvatarFallback>
               </Avatar>
 
               {/* 어두운 오버레이 */}

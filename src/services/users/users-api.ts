@@ -1,6 +1,12 @@
 import clientFetcher from 'utils/client-side/client-fetcher';
 
-import { GetProfileResponse, PatchProfileImageRequest, PutProfileRequest } from './users-types';
+import {
+  GetProfileResponse,
+  PatchProfileImageRequest,
+  PatchProfileImageResponse,
+  PutProfileRequest,
+  PutProfileResponse,
+} from './users-types';
 
 /**
  * 내 정보 조회
@@ -15,7 +21,7 @@ export const getProfile = () => {
  * 내 정보 수정
  */
 export const putProfile = (requestBody: PutProfileRequest) => {
-  const response = clientFetcher.put<null>(`/users/profile`, {
+  const response = clientFetcher.put<PutProfileResponse>(`/users/profile`, {
     ...requestBody,
   });
 
@@ -27,7 +33,7 @@ export const putProfile = (requestBody: PutProfileRequest) => {
  * @param profileImage 변경할 이미지 주소
  */
 export const patchProfileImage = ({ profileImage }: PatchProfileImageRequest) => {
-  const response = clientFetcher.patch<null>(`/users/profile/image`, {
+  const response = clientFetcher.patch<PatchProfileImageResponse>(`/users/profile/image`, {
     profileImage,
   });
 

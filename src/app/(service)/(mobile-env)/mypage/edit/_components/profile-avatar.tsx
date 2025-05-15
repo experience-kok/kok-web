@@ -1,44 +1,67 @@
+import { useAtomValue } from 'jotai';
 import { Camera } from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar';
 import { Text } from 'components/ui/text';
 
+import { userAtom } from 'stores/user-atoms';
+
 interface Props {
+  preview: string | null;
   profileImage: string | null;
-  fallbackText: string;
-  onImageChange: (imageUrl: string) => void;
+  onFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 /**
  * 내 정보 수정 페이지의 유저 아바타 컴포넌트
  */
-export default function ProfileAvatar({ profileImage, fallbackText, onImageChange }: Props) {
-  const handleClick = async () => {
-    // TODO presigned-url 구현 완료시 해당 부분에 로직 구현
-    onImageChange(
-      'https://media.istockphoto.com/id/2148178472/ko/%EC%82%AC%EC%A7%84/hispanic-programmers-collaborating-on-software-development-in-a-modern-office-setting.jpg?s=612x612&w=is&k=20&c=UYJ6tr2fi44xabWydFWWStS0jQO6R_n7KqN46YSMwHc=',
-    );
-    console.log('이미지 변경');
+export default function ProfileAvatar({ preview, profileImage, onFileChange }: Props) {
+  const user = useAtomValue(userAtom);
+  const handleAvatarClick = () => {
+    // input 요소를 클릭하여 파일 선택 다이얼로그 열기
+    const fileInput = document.getElementById('profile-image-input');
+    fileInput?.click();
   };
+  console.log(user);
 
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-10">
-      <div className="group relative cursor-pointer" onClick={handleClick}>
-        <Avatar className="h-20 w-20">
-          <AvatarImage src={profileImage ?? undefined} />
-          <AvatarFallback>{fallbackText ?? ''}</AvatarFallback>
-        </Avatar>
+    <section className="flex flex-col items-center justify-center py-10">
+      <div className="group relative">
+        <div className="relative cursor-pointer" onClick={handleAvatarClick}>
+          <Avatar className="h-20 w-20">
+            {preview ? (
+              <AvatarImage src={preview} />
+            ) : profileImage ? (
+              <AvatarImage src={profileImage} />
+            ) : null}
+            <AvatarFallback>체험콕</AvatarFallback>
+          </Avatar>
 
-        {/* 어두운 오버레이 */}
-        <div className="absolute inset-0 rounded-full bg-black/40 opacity-0 transition-opacity group-hover:opacity-100" />
+          {/* 어두운 오버레이 */}
+          <div className="absolute inset-0 rounded-full bg-black/40 opacity-0 transition-opacity group-hover:opacity-100" />
 
-        <div className="absolute right-0 bottom-0 flex h-8 w-8 items-center justify-center rounded-full border border-white bg-white">
-          <Camera size={20} className="fill-muted-foreground text-white" />
+          {/* 카메라 아이콘 */}
+          <div className="absolute right-0 bottom-0 flex h-8 w-8 items-center justify-center rounded-full border border-white bg-white">
+            <Camera size={20} className="fill-muted-foreground text-white" />
+          </div>
         </div>
+
+        {/* 숨겨진 파일 입력 */}
+        <input
+          id="profile-image-input"
+          type="file"
+          accept="image/png, image/jpeg, image/jpg"
+          onChange={onFileChange}
+          className="hidden"
+        />
       </div>
 
-      <Text weight="bold" color="muted-foreground">
+      <Text weight="bold" color="muted-foreground" className="mt-2">
         프로필 이미지 등록
+      </Text>
+
+      <Text size={'sm'} color="red">
+        JPG 또는 PNG 파일만 업로드할 수 있어요.
       </Text>
     </section>
   );
