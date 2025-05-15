@@ -1,3 +1,5 @@
+'use client';
+
 import { ErrorBoundary, Suspense } from '@suspensive/react';
 
 import ErrorFallback from 'components/shared/error-fallback';
