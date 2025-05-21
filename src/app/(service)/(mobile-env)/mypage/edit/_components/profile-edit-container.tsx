@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 
 import { EditForm } from 'schemas/user-profile-edit-schema';
 
-import { postPresignedUrl } from 'services/image/image-api';
+import { postPresignedUrlForProfileImage } from 'services/image/image-api';
 import { ProfileImageExtension } from 'services/image/image-types';
 import { usePutProfileMutation } from 'services/users/users-mutation';
 import { useGetProfileQuery } from 'services/users/users-query';
@@ -53,7 +53,7 @@ export default function MyProfileEditContainer() {
     }
 
     const fileExtension = selectedFile.name.split('.').pop() as ProfileImageExtension;
-    const { presignedUrl } = await postPresignedUrl(fileExtension);
+    const { presignedUrl } = await postPresignedUrlForProfileImage(fileExtension);
     const imageUrl = presignedUrl.split('?')[0];
 
     try {

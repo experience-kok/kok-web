@@ -4,14 +4,14 @@ import { usePatchProfileImageMutation } from 'services/users/users-mutation';
 
 import { useMutation } from '@tanstack/react-query';
 
-import { postPresignedUrl } from './image-api';
+import { postPresignedUrlForProfileImage } from './image-api';
 
 /**
  * presigned-url 발급 뮤테이션
  */
 export const usePostPresignedUrlMutation = () => {
   return useMutation({
-    mutationFn: postPresignedUrl,
+    mutationFn: postPresignedUrlForProfileImage,
   });
 };
 
@@ -22,7 +22,7 @@ export const usePatchProfileImageWithPresignedUrlMutation = (profileImageFile: F
   const { mutate: handlePatchProfileImage } = usePatchProfileImageMutation();
 
   return useMutation({
-    mutationFn: postPresignedUrl,
+    mutationFn: postPresignedUrlForProfileImage,
     onSuccess: async ({ presignedUrl }) => {
       const imageUrl = presignedUrl.split('?')[0];
 
