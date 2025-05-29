@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
         hostname: 'images.unsplash.com',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'drxgfm74s70w1.cloudfront.net',
+        port: '',
+      },
     ],
   },
   webpack: config => {

@@ -2,6 +2,7 @@
 
 import { useAtomValue } from 'jotai';
 import { Camera } from 'lucide-react';
+import Image from 'next/image';
 
 import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar';
 import { Text } from 'components/ui/text';
@@ -32,9 +33,13 @@ export default function ProfileAvatar({ preview, profileImage, onFileChange }: P
         <div className="relative cursor-pointer" onClick={handleAvatarClick}>
           <Avatar className="h-20 w-20">
             {preview ? (
-              <AvatarImage src={preview} />
+              <AvatarImage asChild src={preview}>
+                <Image src={preview} width={70} height={70} alt="프로필 이미지" />
+              </AvatarImage>
             ) : profileImage ? (
-              <AvatarImage src={profileImage} />
+              <AvatarImage asChild src={profileImage}>
+                <Image src={profileImage} width={70} height={70} alt="프로필 이미지" />
+              </AvatarImage>
             ) : null}
             <AvatarFallback>체험콕</AvatarFallback>
           </Avatar>

@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import { useState } from 'react';
 
 import { Camera } from 'lucide-react';
+import Image from 'next/image';
 
 import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar';
 import { Button } from 'components/ui/button';
@@ -99,9 +100,18 @@ export default function ProfileImageUploadDialog({ children }: Props) {
             <div className="relative cursor-pointer" onClick={handleAvatarClick}>
               <Avatar className="h-20 w-20">
                 {preview ? (
-                  <AvatarImage src={preview} />
+                  <AvatarImage asChild src={preview}>
+                    <Image src={preview} width={70} height={70} alt="프로필 이미지" />
+                  </AvatarImage>
                 ) : userData?.user?.profileImage ? (
-                  <AvatarImage src={userData?.user?.profileImage} />
+                  <AvatarImage asChild src={userData.user.profileImage}>
+                    <Image
+                      src={userData.user.profileImage}
+                      width={70}
+                      height={70}
+                      alt="프로필 이미지"
+                    />
+                  </AvatarImage>
                 ) : null}
                 <AvatarFallback>체험콕</AvatarFallback>
               </Avatar>

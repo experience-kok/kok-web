@@ -3,6 +3,7 @@
 import { useCallback } from 'react';
 
 import { LogOut, Settings, User, CreditCard, HelpCircle } from 'lucide-react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar';
@@ -34,7 +35,9 @@ export default function UserAvatar() {
     <HoverCard openDelay={100} closeDelay={100}>
       <HoverCardTrigger>
         <Avatar className="cursor-pointer">
-          <AvatarImage src={auth.user?.profileImage ?? undefined} />
+          <AvatarImage asChild src={auth.user?.profileImage ?? undefined}>
+            <Image src={auth.user?.profileImage || ''} alt="logo" width={40} height={40} />
+          </AvatarImage>
           <AvatarFallback>체험콕</AvatarFallback>
         </Avatar>
       </HoverCardTrigger>
