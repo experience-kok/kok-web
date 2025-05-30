@@ -17,6 +17,18 @@ export const routeMenu: Menu[] = [
     title: '내 정보 수정',
     url: '/mypage/edit',
   },
+  {
+    title: '캠페인',
+    url: '/campaign',
+  },
+  {
+    title: '캠페인 관리',
+    url: '/campaign/manage',
+  },
+  {
+    title: '캠페인 등록',
+    url: '/campaign/manage/register',
+  },
 ];
 
 // 서브 메뉴 목록

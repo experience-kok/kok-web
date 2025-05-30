@@ -2,18 +2,19 @@
 
 import { useCallback } from 'react';
 
-import { LogOut, Settings, User, CreditCard, HelpCircle } from 'lucide-react';
+import { LogOut, Settings, User, CreditCard, HelpCircle, FolderPen } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from 'components/ui/hover-card';
+import { Separator } from 'components/ui/separator';
 
 import { useAuth } from 'hooks/use-auth';
 
 import { useLogoutMutation } from 'services/auth/auth-query';
 
-import UserMenuItem from './user-avatar-menu';
+import UserAvatarMenu from './user-avatar-menu';
 
 export default function UserAvatar() {
   const auth = useAuth();
@@ -31,6 +32,11 @@ export default function UserAvatar() {
     router.push('/mypage');
   }, [router]);
 
+  // 캠페인 관리 페이지 이동
+  const handleRoouteToCampaignManagePage = useCallback(() => {
+    router.push('/campaign/manage');
+  }, [router]);
+
   return (
     <HoverCard openDelay={100} closeDelay={100}>
       <HoverCardTrigger>
@@ -43,15 +49,21 @@ export default function UserAvatar() {
       </HoverCardTrigger>
       <HoverCardContent className="w-44 p-2">
         <div className="flex flex-col gap-1">
-          <UserMenuItem
+          <UserAvatarMenu
             icon={<User size={16} />}
             label="내 정보"
             onClick={handleRouteToProfilePage}
           />
-          <UserMenuItem icon={<Settings size={16} />} label="설정" />
-          <UserMenuItem icon={<CreditCard size={16} />} label="결제 관리" />
-          <UserMenuItem icon={<HelpCircle size={16} />} label="도움말" />
-          <UserMenuItem icon={<LogOut size={16} />} label="로그아웃" onClick={handleLogout} />
+          <UserAvatarMenu
+            icon={<FolderPen size={16} />}
+            label="캠페인 관리"
+            onClick={handleRoouteToCampaignManagePage}
+          />
+          <Separator />
+          <UserAvatarMenu icon={<Settings size={16} />} label="설정" />
+          <UserAvatarMenu icon={<CreditCard size={16} />} label="결제 관리" />
+          <UserAvatarMenu icon={<HelpCircle size={16} />} label="도움말" />
+          <UserAvatarMenu icon={<LogOut size={16} />} label="로그아웃" onClick={handleLogout} />
         </div>
       </HoverCardContent>
     </HoverCard>
