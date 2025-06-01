@@ -2,7 +2,7 @@
 
 import { Button } from 'components/ui/button';
 
-export default function UserMenuItem({
+export default function UserAvatarMenu({
   icon,
   label,
   onClick,

@@ -1,6 +1,7 @@
 'use client';
 
 import { Camera } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import Tooltip from 'components/shared/tooltip';
@@ -24,7 +25,15 @@ export default function MyProfile() {
           <Tooltip content="프로필 이미지 변경">
             <div className="group relative cursor-pointer">
               <Avatar className="h-20 w-20">
-                <AvatarImage src={userData.user?.profileImage ?? undefined} />
+                <AvatarImage asChild src={userData.user.profileImage ?? undefined}>
+                  <Image
+                    src={userData.user.profileImage ?? ''}
+                    width={70}
+                    height={70}
+                    alt="프로필 이미지"
+                  />
+                </AvatarImage>
+
                 <AvatarFallback>체험콕</AvatarFallback>
               </Avatar>
 
