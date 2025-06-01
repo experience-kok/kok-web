@@ -25,7 +25,6 @@ export default function ProfileAvatar({ preview, profileImage, onFileChange }: P
     const fileInput = document.getElementById('profile-image-input');
     fileInput?.click();
   };
-  console.log(user);
 
   return (
     <section className="flex flex-col items-center justify-center py-10">
