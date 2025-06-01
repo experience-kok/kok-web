@@ -64,235 +64,235 @@ export default function CampaignRegisterPage() {
   //             <Label className="text-md">
   //               캠페인 타입 <span className="text-primary">*</span>
   //             </Label>
-  //             <Select
-  //               value={campaignType}
-  //               onValueChange={(value: '방문' | '배송') => {
-  //                 setCampaignType(value);
-  //                 setCategory(''); // Reset category when campaign type changes
-  //               }}
-  //             >
-  //               <SelectTrigger>
-  //                 <SelectValue placeholder="캠페인 타입을 선택하세요" />
-  //               </SelectTrigger>
-  //               <SelectContent>
-  //                 <SelectItem value="방문">방문 타입</SelectItem>
-  //                 <SelectItem value="배송">배송 타입</SelectItem>
-  //               </SelectContent>
-  //             </Select>
+              // <Select
+              //   value={campaignType}
+              //   onValueChange={(value: '방문' | '배송') => {
+              //     setCampaignType(value);
+              //     setCategory(''); // Reset category when campaign type changes
+              //   }}
+              // >
+              //   <SelectTrigger>
+              //     <SelectValue placeholder="캠페인 타입을 선택하세요" />
+              //   </SelectTrigger>
+              //   <SelectContent>
+              //     <SelectItem value="방문">방문 타입</SelectItem>
+              //     <SelectItem value="배송">배송 타입</SelectItem>
+              //   </SelectContent>
+              // </Select>
   //           </div>
 
-  //           <div className="space-y-2">
-  //             <Label className="text-md">
-  //               카테고리 <span className="text-primary">*</span>
-  //             </Label>
-  //             <Select value={category} onValueChange={setCategory} disabled={!campaignType}>
-  //               <SelectTrigger>
-  //                 <SelectValue
-  //                   placeholder={
-  //                     campaignType ? '카테고리를 선택하세요' : '먼저 캠페인 타입을 선택하세요'
-  //                   }
-  //                 />
-  //               </SelectTrigger>
-  //               <SelectContent>
-  //                 {campaignType === '방문' && (
-  //                   <>
-  //                     <SelectItem value="restaurant">맛집</SelectItem>
-  //                     <SelectItem value="cafe">카페</SelectItem>
-  //                     <SelectItem value="beauty">뷰티</SelectItem>
-  //                     <SelectItem value="accommodation">숙박</SelectItem>
-  //                   </>
-  //                 )}
-  //                 {campaignType === '배송' && (
-  //                   <>
-  //                     <SelectItem value="food">식품</SelectItem>
-  //                     <SelectItem value="cosmetics">화장품</SelectItem>
-  //                     <SelectItem value="lifestyle">생활용품</SelectItem>
-  //                     <SelectItem value="fashion">패션</SelectItem>
-  //                     <SelectItem value="accessories">잡화</SelectItem>
-  //                   </>
-  //                 )}
-  //               </SelectContent>
-  //             </Select>
-  //           </div>
+            // <div className="space-y-2">
+            //   <Label className="text-md">
+            //     카테고리 <span className="text-primary">*</span>
+            //   </Label>
+            //   <Select value={category} onValueChange={setCategory} disabled={!campaignType}>
+            //     <SelectTrigger>
+            //       <SelectValue
+            //         placeholder={
+            //           campaignType ? '카테고리를 선택하세요' : '먼저 캠페인 타입을 선택하세요'
+            //         }
+            //       />
+            //     </SelectTrigger>
+            //     <SelectContent>
+            //       {campaignType === '방문' && (
+            //         <>
+            //           <SelectItem value="restaurant">맛집</SelectItem>
+            //           <SelectItem value="cafe">카페</SelectItem>
+            //           <SelectItem value="beauty">뷰티</SelectItem>
+            //           <SelectItem value="accommodation">숙박</SelectItem>
+            //         </>
+            //       )}
+            //       {campaignType === '배송' && (
+            //         <>
+            //           <SelectItem value="food">식품</SelectItem>
+            //           <SelectItem value="cosmetics">화장품</SelectItem>
+            //           <SelectItem value="lifestyle">생활용품</SelectItem>
+            //           <SelectItem value="fashion">패션</SelectItem>
+            //           <SelectItem value="accessories">잡화</SelectItem>
+            //         </>
+            //       )}
+            //     </SelectContent>
+            //   </Select>
+            // </div>
 
-  //           <div className="space-y-2">
-  //             <Label className="text-md">
-  //               캠페인 제목 <span className="text-primary">*</span>
-  //             </Label>
-  //             <Input id="title" placeholder="캠페인 제목을 입력하세요" />
-  //           </div>
+            // <div className="space-y-2">
+            //   <Label className="text-md">
+            //     캠페인 제목 <span className="text-primary">*</span>
+            //   </Label>
+            //   <Input id="title" placeholder="캠페인 제목을 입력하세요" />
+            // </div>
 
-  //           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-  //             <div className="space-y-2">
-  //               <Label className="text-md">
-  //                 최대 신청 인원 <span className="text-primary">*</span>
-  //               </Label>
-  //               <div className="flex items-center gap-2">
-  //                 <Users className="text-muted-foreground h-4 w-4" />
-  //                 <Input id="maxApplicants" type="number" placeholder="10" min="1" />
-  //               </div>
-  //             </div>
-  //             <div className="space-y-2">
-  //               <Label className="text-md">
-  //                 현재 신청 인원 <span className="text-primary">*</span>
-  //               </Label>
-  //               <div className="flex items-center gap-2">
-  //                 <Users className="text-muted-foreground h-4 w-4" />
-  //                 <Input id="currentApplicants" type="number" placeholder="0" min="0" disabled />
-  //               </div>
-  //             </div>
-  //           </div>
+            // <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            //   <div className="space-y-2">
+            //     <Label className="text-md">
+            //       최대 신청 인원 <span className="text-primary">*</span>
+            //     </Label>
+            //     <div className="flex items-center gap-2">
+            //       <Users className="text-muted-foreground h-4 w-4" />
+            //       <Input id="maxApplicants" type="number" placeholder="10" min="1" />
+            //     </div>
+            //   </div>
+            //   <div className="space-y-2">
+            //     <Label className="text-md">
+            //       현재 신청 인원 <span className="text-primary">*</span>
+            //     </Label>
+            //     <div className="flex items-center gap-2">
+            //       <Users className="text-muted-foreground h-4 w-4" />
+            //       <Input id="currentApplicants" type="number" placeholder="0" min="0" disabled />
+            //     </div>
+            //   </div>
+            // </div>
 
-  //           <div className="space-y-4">
-  //             <div className="space-y-2">
-  //               <Label className="text-md">
-  //                 모집 시작일 <span className="text-primary">*</span>
-  //               </Label>
-  //               <div className="flex items-center gap-2">
-  //                 <Calendar className="text-muted-foreground h-4 w-4" />
-  //                 <Input id="recruitmentStart" type="datetime-local" />
-  //               </div>
-  //             </div>
+            // <div className="space-y-4">
+            //   <div className="space-y-2">
+            //     <Label className="text-md">
+            //       모집 시작일 <span className="text-primary">*</span>
+            //     </Label>
+            //     <div className="flex items-center gap-2">
+            //       <Calendar className="text-muted-foreground h-4 w-4" />
+            //       <Input id="recruitmentStart" type="datetime-local" />
+            //     </div>
+            //   </div>
 
-  //             <div className="space-y-2">
-  //               <Label className="text-md">
-  //                 모집 마감일 <span className="text-primary">*</span>
-  //               </Label>
-  //               <div className="flex items-center gap-2">
-  //                 <Calendar className="text-muted-foreground h-4 w-4" />
-  //                 <Input id="recruitmentEnd" type="datetime-local" />
-  //               </div>
-  //             </div>
-  //           </div>
+            //   <div className="space-y-2">
+            //     <Label className="text-md">
+            //       모집 마감일 <span className="text-primary">*</span>
+            //     </Label>
+            //     <div className="flex items-center gap-2">
+            //       <Calendar className="text-muted-foreground h-4 w-4" />
+            //       <Input id="recruitmentEnd" type="datetime-local" />
+            //     </div>
+            //   </div>
+            // </div>
   //         </CardContent>
   //       </Card>
 
   //       {/* 상세 정보 */}
-  //       <Card>
-  //         <CardHeader>
-  //           <CardTitle className="flex items-center gap-2">
-  //             <Target className="h-5 w-5" />
-  //             상세 정보
-  //           </CardTitle>
-  //         </CardHeader>
-  //         <CardContent className="space-y-6">
-  //           <div className="space-y-2">
-  //             <Label className="text-md">
-  //               제공 제품/서비스 상세 정보 <span className="text-primary">*</span>
-  //             </Label>
-  //             <Textarea
-  //               id="productDetails"
-  //               placeholder="어떤 제품이나 서비스를 제공하는지 자세히 설명해주세요"
-  //               className="min-h-[120px]"
-  //             />
-  //           </div>
+        // <Card>
+        //   <CardHeader>
+        //     <CardTitle className="flex items-center gap-2">
+        //       <Target className="h-5 w-5" />
+        //       상세 정보
+        //     </CardTitle>
+        //   </CardHeader>
+        //   <CardContent className="space-y-6">
+        //     <div className="space-y-2">
+        //       <Label className="text-md">
+        //         제공 제품/서비스 상세 정보 <span className="text-primary">*</span>
+        //       </Label>
+        //       <Textarea
+        //         id="productDetails"
+        //         placeholder="어떤 제품이나 서비스를 제공하는지 자세히 설명해주세요"
+        //         className="min-h-[120px]"
+        //       />
+        //     </div>
 
-  //           <div className="space-y-2">
-  //             <Label className="text-md">
-  //               선정 기준<span className="text-primary">*</span>
-  //             </Label>
+        //     <div className="space-y-2">
+        //       <Label className="text-md">
+        //         선정 기준<span className="text-primary">*</span>
+        //       </Label>
 
-  //             <Textarea
-  //               id="recruitmentPeriod"
-  //               placeholder="선정 과정과 기준에 대해 설명해주세요"
-  //               className="min-h-[80px]"
-  //             />
-  //           </div>
+        //       <Textarea
+        //         id="recruitmentPeriod"
+        //         placeholder="선정 과정과 기준에 대해 설명해주세요"
+        //         className="min-h-[80px]"
+        //       />
+        //     </div>
 
-  //           <div className="space-y-2">
-  //             <Label className="text-md">
-  //               리뷰 제출 마감일<span className="text-primary">*</span>
-  //             </Label>
+        //     <div className="space-y-2">
+        //       <Label className="text-md">
+        //         리뷰 제출 마감일<span className="text-primary">*</span>
+        //       </Label>
 
-  //             <div className="flex items-center gap-2">
-  //               <Clock className="text-muted-foreground h-4 w-4" />
-  //               <Input id="reviewDeadline" type="datetime-local" />
-  //             </div>
-  //           </div>
+        //       <div className="flex items-center gap-2">
+        //         <Clock className="text-muted-foreground h-4 w-4" />
+        //         <Input id="reviewDeadline" type="datetime-local" />
+        //       </div>
+        //     </div>
 
-  //           <div className="space-y-2">
-  //             <Label className="text-md">
-  //               참가자 선정일 <span className="text-primary">*</span>
-  //             </Label>
-  //             <div className="flex items-center gap-2">
-  //               <Calendar className="text-muted-foreground h-4 w-4" />
-  //               <Input id="selectionDate" type="datetime-local" />
-  //             </div>
-  //           </div>
-  //         </CardContent>
-  //       </Card>
+        //     <div className="space-y-2">
+        //       <Label className="text-md">
+        //         참가자 선정일 <span className="text-primary">*</span>
+        //       </Label>
+        //       <div className="flex items-center gap-2">
+        //         <Calendar className="text-muted-foreground h-4 w-4" />
+        //         <Input id="selectionDate" type="datetime-local" />
+        //       </div>
+        //     </div>
+        //   </CardContent>
+        // </Card>
 
-  //       {/* 업체 정보 */}
-  //       <Card>
-  //         <CardHeader>
-  //           <CardTitle className="flex items-center gap-2">
-  //             <Building2 className="h-5 w-5" />
-  //             업체 정보
-  //           </CardTitle>
-  //         </CardHeader>
-  //         <CardContent className="space-y-6">
-  //           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-  //             <div className="space-y-2">
-  //               <Label className="text-md">
-  //                 업체명<span className="text-primary">*</span>
-  //               </Label>
+        // {/* 업체 정보 */}
+        // <Card>
+        //   <CardHeader>
+        //     <CardTitle className="flex items-center gap-2">
+        //       <Building2 className="h-5 w-5" />
+        //       업체 정보
+        //     </CardTitle>
+        //   </CardHeader>
+        //   <CardContent className="space-y-6">
+        //     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        //       <div className="space-y-2">
+        //         <Label className="text-md">
+        //           업체명<span className="text-primary">*</span>
+        //         </Label>
 
-  //               <Input id="companyName" placeholder="업체명을 입력하세요" />
-  //             </div>
-  //             <div className="space-y-2">
-  //               <Label className="text-md">
-  //                 사업자등록번호<span className="text-primary">*</span>
-  //               </Label>
+        //         <Input id="companyName" placeholder="업체명을 입력하세요" />
+        //       </div>
+        //       <div className="space-y-2">
+        //         <Label className="text-md">
+        //           사업자등록번호<span className="text-primary">*</span>
+        //         </Label>
 
-  //               <Input id="businessNumber" placeholder="000-00-00000" />
-  //             </div>
-  //             <div className="space-y-2">
-  //               <Label className="text-md">
-  //                 담당자명<span className="text-primary">*</span>
-  //               </Label>
+        //         <Input id="businessNumber" placeholder="000-00-00000" />
+        //       </div>
+        //       <div className="space-y-2">
+        //         <Label className="text-md">
+        //           담당자명<span className="text-primary">*</span>
+        //         </Label>
 
-  //               <Input id="contactPerson" placeholder="담당자명을 입력하세요" />
-  //             </div>
-  //             <div className="space-y-2">
-  //               <Label className="text-md">
-  //                 연락처<span className="text-primary">*</span>
-  //               </Label>
+        //         <Input id="contactPerson" placeholder="담당자명을 입력하세요" />
+        //       </div>
+        //       <div className="space-y-2">
+        //         <Label className="text-md">
+        //           연락처<span className="text-primary">*</span>
+        //         </Label>
 
-  //               <Input id="contactPhone" placeholder="010-0000-0000" />
-  //             </div>
-  //           </div>
-  //         </CardContent>
-  //       </Card>
+        //         <Input id="contactPhone" placeholder="010-0000-0000" />
+        //       </div>
+        //     </div>
+        //   </CardContent>
+        // </Card>
 
-  //       {/* 미션 가이드 */}
-  //       <Card>
-  //         <CardHeader>
-  //           <CardTitle>미션 가이드</CardTitle>
-  //           <p className="text-muted-foreground text-sm">마크다운 형식으로 작성 가능합니다</p>
-  //         </CardHeader>
-  //         <CardContent>
-  //           <Textarea
-  //             placeholder="## 미션 가이드&#10;&#10;### 1. 방문 전 준비사항&#10;- 예약 확인&#10;- 신분증 지참&#10;&#10;### 2. 체험 과정&#10;- 사진 촬영 (최소 5장)&#10;- 체험 후기 작성&#10;&#10;### 3. 리뷰 작성 가이드&#10;- 솔직한 후기 작성&#10;- 해시태그 포함"
-  //             className="min-h-[200px] font-mono text-sm"
-  //           />
-  //         </CardContent>
-  //       </Card>
+        // {/* 미션 가이드 */}
+        // <Card>
+        //   <CardHeader>
+        //     <CardTitle>미션 가이드</CardTitle>
+        //     <p className="text-muted-foreground text-sm">마크다운 형식으로 작성 가능합니다</p>
+        //   </CardHeader>
+        //   <CardContent>
+        //     <Textarea
+        //       placeholder="## 미션 가이드&#10;&#10;### 1. 방문 전 준비사항&#10;- 예약 확인&#10;- 신분증 지참&#10;&#10;### 2. 체험 과정&#10;- 사진 촬영 (최소 5장)&#10;- 체험 후기 작성&#10;&#10;### 3. 리뷰 작성 가이드&#10;- 솔직한 후기 작성&#10;- 해시태그 포함"
+        //       className="min-h-[200px] font-mono text-sm"
+        //     />
+        //   </CardContent>
+        // </Card>
 
-  //       {/* 키워드 */}
-  //       <Card>
-  //         <CardHeader>
-  //           <CardTitle>필수 포함 키워드</CardTitle>
-  //           <p className="text-muted-foreground text-sm">
-  //             리뷰 작성 시 반드시 포함되어야 하는 키워드를 입력하세요
-  //           </p>
-  //         </CardHeader>
-  //         <CardContent>
-  //           <Textarea
-  //             placeholder="예시: #맛집추천 #신메뉴 #분위기좋은곳 #데이트코스 #인스타맛집"
-  //             className="min-h-[100px]"
-  //           />
-  //         </CardContent>
-  //       </Card>
+        // {/* 키워드 */}
+        // <Card>
+        //   <CardHeader>
+        //     <CardTitle>필수 포함 키워드</CardTitle>
+        //     <p className="text-muted-foreground text-sm">
+        //       리뷰 작성 시 반드시 포함되어야 하는 키워드를 입력하세요
+        //     </p>
+        //   </CardHeader>
+        //   <CardContent>
+        //     <Textarea
+        //       placeholder="예시: #맛집추천 #신메뉴 #분위기좋은곳 #데이트코스 #인스타맛집"
+        //       className="min-h-[100px]"
+        //     />
+        //   </CardContent>
+        // </Card>
 
   //       {/* 방문 정보 */}
   //       {campaignType === '방문' && (

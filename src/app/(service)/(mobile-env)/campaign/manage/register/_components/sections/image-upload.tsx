@@ -17,7 +17,7 @@ export default function ImageUpload({ preview, onFileChange }: Props) {
   };
 
   return (
-    <section>
+    <section className="mb-6">
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
