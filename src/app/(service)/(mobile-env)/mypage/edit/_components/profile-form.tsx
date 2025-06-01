@@ -39,14 +39,14 @@ export default function ProfileForm({ defaultValues, onSubmit }: Props) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center gap-6 px-6">
       <div className="grid w-full items-center gap-1.5">
-        <Label className="text-md font-bold">
+        <Label className="text-md">
           닉네임 <span className="text-primary">*</span>
         </Label>
         <Input className="h-12" {...register('nickname', { required: true })} />
       </div>
 
       <div className="grid w-full items-center gap-1.5">
-        <Label className="text-md font-bold">
+        <Label className="text-md">
           전화번호 <span className="text-primary">*</span>
         </Label>
         <Input className="h-12" {...register('phone', { required: true })} />
@@ -54,7 +54,7 @@ export default function ProfileForm({ defaultValues, onSubmit }: Props) {
       </div>
 
       <div className="grid w-full items-center gap-1.5">
-        <Label className="text-md font-bold">
+        <Label className="text-md">
           나이 <span className="text-primary">*</span>
         </Label>
         <Input
@@ -66,7 +66,7 @@ export default function ProfileForm({ defaultValues, onSubmit }: Props) {
       </div>
 
       <div className="grid w-full items-center gap-1.5">
-        <Label className="text-md font-bold">
+        <Label className="text-md">
           성별 <span className="text-primary">*</span>
         </Label>
         <Controller
